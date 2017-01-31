@@ -8,8 +8,17 @@
 
 import Vue from 'vue'
 import App from './App'
+import Signup from './components/signup'
 
+var VueRouter = require('vue-router');
+Vue.use(VueRouter);
 Vue.use(axios);
+
+var router = new VueRouter({
+  saveScrollPosition: true,
+  history: true
+});
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
@@ -23,4 +32,13 @@ new Vue({
     }
   }
 
-})
+});
+
+router.map({
+  '/sign': {
+    component: App
+  }
+});
+
+
+export default router

@@ -1,8 +1,8 @@
 {
   "name": "y",
   "version": "1.0.0",
-  "description": "y",
-  "author": "y",
+  "description": "A Vue.js Front-End for NLP annotation",
+  "author": "Mohamed Nabil <mohamednabil00000@gmail.com>",
   "private": true,
   "main": "dist/vue-resource.common.js",
   "jsnext:main": "dist/vue-resource.es2015.js",
@@ -31,7 +31,11 @@
 },
   "dependencies": {
     "vue": "^2.1.0",
-    "axios": "^0.15.3"
+    "axios": "^0.15.3",
+    "vue-router": "^2.2.0",
+    "bootstrap": "^4.0.0-alpha.6",
+    "bootstrap-loader": "^2.0.0-beta.20",
+    "vueboot": "^0.4.5"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",

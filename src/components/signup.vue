@@ -35,7 +35,6 @@
 
 export default {
   
-
   name: 'Signup',
   data () {
     return {
