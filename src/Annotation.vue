@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="annotation">
     <login></login>
   </div>
 </template>
@@ -9,7 +9,7 @@ import Hello from './components/Hello'
 import Login from './components/Login'
 
 export default {
-  name: 'app',
+  name: 'annotation',
   components: {
     Hello, Login
   }
@@ -17,7 +17,7 @@ export default {
 </script>
 
 <style>
-#app {
+#annotation {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

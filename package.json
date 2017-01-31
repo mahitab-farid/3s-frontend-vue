@@ -30,7 +30,8 @@
     "url": "git+https://github.com/vuejs/vue-resource.git"
 },
   "dependencies": {
-    "vue": "^2.1.0"
+    "vue": "^2.1.0",
+    "axios": "^0.15.3"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",
