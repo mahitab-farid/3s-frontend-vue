@@ -1,5 +1,7 @@
 <template>
+
   <div class="app">
+
     <div class="login-wrap">
       <div class="login-html">
         <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
@@ -26,7 +28,6 @@
               <a href="#forgot">Forgot Password?</a>
             </div>
           </div>
-
           <div class="sign-up-htm">
             <signup></signup>
           </div>
@@ -38,10 +39,12 @@
 
 <script>
   import Signup from './signup.vue';
+  import Hello from './Hello.vue';
+
 export default {
   
   name: 'Login',
-  components: {Signup},
+  components: {Signup, Hello},
   data () {
     return {
       response: '',
@@ -63,7 +66,7 @@ export default {
                   window.sessionStorage.setItem('user_id', this.currentUser.id);
                   window.sessionStorage.setItem('accessToken', this.currentUser.accessToken);
                   window.sessionStorage.setItem('userName', this.currentUser.userName);
-                  
+                  window.location.replace("../../menu.html");
             } , 
 
             login: function(){
@@ -89,6 +92,7 @@ export default {
                       that.redirection();
                   })
                   .catch(function (error) {
+                    console.log(error);
                     alert('User Not Found !');
                   });
 

@@ -6,13 +6,17 @@
 // Vue1.http.options.emulateJSON = true;
 // Vue1.http.options.emulateHTTP = true;
 
-import Vue from 'vue'
-import App from './App'
+import Vue    from 'vue'
+import App    from './screens/App'
+import Menu   from './screens/Menu'
 import Signup from './components/signup'
+
 
 var VueRouter = require('vue-router');
 Vue.use(VueRouter);
 Vue.use(axios);
+
+
 
 var router = new VueRouter({
   saveScrollPosition: true,
@@ -23,7 +27,7 @@ var router = new VueRouter({
 new Vue({
   el: '#app',
   template: '<App/>',
-  components: { App },
+  components: { App},
    http: {
     root: '/root',
     headers: {
@@ -31,12 +35,26 @@ new Vue({
       'Content-Type': 'application/x-www-form-urlencoded'
     }
   }
-
 });
+
+
+new Vue({
+  el: '#menu',
+  template: '<Menu/>',
+  components: { Menu},
+   http: {
+    root: '/root',
+    headers: {
+      'access-control-allow-origin,content-type': '*',
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  }
+});
+
 
 router.map({
   '/sign': {
-    component: App
+    component: Signup
   }
 });
 

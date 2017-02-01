@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+  
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <ul>
@@ -21,8 +22,10 @@
 </template>
 
 <script>
+  import Signup from './signup.vue';
 export default {
   name: 'hello',
+  components: {Signup},
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'

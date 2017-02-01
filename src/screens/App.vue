@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import Hello from './components/Hello'
-import Login from './components/Login'
+import Hello from '../components/Hello'
+import Login from '../components/Login'
 
 export default {
   name: 'app',
@@ -26,4 +26,3 @@ export default {
   margin-top: 60px;
 }
 </style>
-

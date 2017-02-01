@@ -38,6 +38,11 @@ module.exports = merge(baseWebpackConfig, {
       template: 'index.html',
       inject: true
     }),
+     new HtmlWebpackPlugin({
+      filename: 'menu.html',
+      template: 'menu.html',
+      inject: true
+    }),
     new FriendlyErrors()
   ]
 })
