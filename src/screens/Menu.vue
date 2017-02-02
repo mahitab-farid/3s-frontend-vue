@@ -1,19 +1,35 @@
 <template>
   <div id="menu">
     <annotation></annotation>
+    <questionAnswers></questionAnswers>
+
   </div>
 </template>
 
 <script>
 
 import Annotation from '../components/Annotation'
+import QuestionAnswers from '../components/QuestionAnswers'
 
 export default {
   name: 'menu',
   components: {
-    Annotation
+    Annotation, QuestionAnswers
+  },
+ 
+  data(){
+    return{
+      good: 'hello'
+    }
+  },
+
+
+    mounted: function(){
+      console.log("hello",this.annotationReviews);
   }
+
 }
+
 </script>
 
 <style>

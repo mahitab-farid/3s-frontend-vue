@@ -1,20 +1,17 @@
 <template>
-  
-
   <div class="annotation">
-    <li v-for="annotationReview in annotationReviews">
-      {{ annotationReview.review_text }}
-    </li>
+      <li v-for="annotationReview in annotationReviews">
+        {{ annotationReview.review_text }}
+      </li>
   </div>
 </template>
 
 <script>
-
-
 export default {
   
   name: 'annotation',
   components: {},
+ 
   data () {
     return {
       annotationReviews: []
@@ -39,6 +36,7 @@ export default {
                     })
                     .then(function (response) {
                       that.annotationReviews = response.data;
+
                     })
                     .catch(function (error) {
                       console.log(error);

@@ -72,7 +72,7 @@ export default {
                            
                   axios({
                     method: 'POST',
-                    url: 'http://localhost:9010/administration/signup',
+                    url: 'http://localhost:9010/user/signup',
                     data: formData,
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                   })
