@@ -1,5 +1,5 @@
 <template>
-  <div class="annotation">
+  <div class="annotationComponent">
 
   </div>
 </template>
@@ -7,7 +7,7 @@
 <script>
 export default {
   
-  name: 'annotation',
+  name: 'annotationComponent',
   components: {},
  
   data () {
@@ -34,7 +34,7 @@ export default {
                     })
                     .then(function (response) {
                       that.annotationReviews = response.data;
-                      that.$emit('event_child', response.data);
+                      that.$emit('event_annotation', response.data);
                     })
                     .catch(function (error) {
                       console.log(error);

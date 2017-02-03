@@ -29,7 +29,9 @@
             </div>
           </div>
           <div class="sign-up-htm">
-            <signup></signup>
+            <div class="signup-form">
+              <signup></signup>
+            </div>
           </div>
         </div>
       </div>
@@ -93,7 +95,7 @@ export default {
                   })
                   .catch(function (error) {
                     console.log(error);
-                    alert('User Not Found !');
+                    alert(error.response.data);
                   });
 
             }
@@ -170,7 +172,7 @@ a{color:inherit;text-decoration:none}
   border-color:#1161ee;
 }
 .login-form{
-  min-height:345px;
+  min-height:400px;
   position:relative;
   -webkit-perspective:1000px;
           perspective:1000px;
@@ -261,7 +263,7 @@ a{color:inherit;text-decoration:none}
 
 .hr{
   height:2px;
-  margin:60px 0 50px 0;
+  margin:90px 0 50px 0;
   background:rgba(255,255,255,.2);
 }
 .foot-lnk{

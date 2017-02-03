@@ -1,8 +1,5 @@
 <template>
 	<div class="questionAnswers">
-		<button v-for="questionAnswer in questionAnswers">
-      		{{ questionAnswer.answer }}
-    	</li>
 
     </div> 
 </template>
@@ -32,6 +29,7 @@ methods:{
         })
         .then(function (response) {
           that.questionAnswers = response.data;
+          that.$emit('event_questionAnswers', response.data);
         })
         .catch(function (error) {
           console.log(error);

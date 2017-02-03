@@ -8,9 +8,10 @@
 
 import Vue    from 'vue'
 import App    from './screens/App'
-import Menu   from './screens/Menu'
+import Annotation   from './screens/Annotation'
 import Signup from './components/signup'
-import Annotation from './components/Annotation'
+import AnnotationComponent from './components/AnnotationComponent'
+import Questionanswers from './components/QuestionAnswers'
 
 
 var VueRouter = require('vue-router');
@@ -40,9 +41,9 @@ new Vue({
 
 
 new Vue({
-  el: '#menu',
-  template: '<Menu/>',
-  components: { Menu, Annotation },
+  el: '#annotation',
+  template: '<Annotation/>',
+  components: { Annotation, AnnotationComponent, Questionanswers },
    http: {
     root: '/root',
     headers: {
