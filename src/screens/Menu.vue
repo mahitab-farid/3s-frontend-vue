@@ -1,8 +1,9 @@
 <template>
   <div id="menu">
-    <annotation></annotation>
+    <annotation v-on:event_child="eventChild"></annotation>
     <questionAnswers></questionAnswers>
-
+    
+    {{annotationReviews}}
   </div>
 </template>
 
@@ -19,14 +20,28 @@ export default {
  
   data(){
     return{
-      good: 'hello'
+     annotationReviews: []
     }
   },
-
+    created(){
+        this.$on('event_parent', function(annotationReviews){
+           console.log('Event from parent component emitted', annotationReviews);
+        });
+    },
 
     mounted: function(){
-      console.log("hello",this.annotationReviews);
+
+      console.log("nabil",this.annotationReviews);
+  },
+  methods: {
+      eventChild: function(annotationReviews) {
+        this.annotationReviews = annotationReviews;
+        console.log('Event from child component emitted', annotationReviews);
+      }
   }
+
+
+
 
 }
 

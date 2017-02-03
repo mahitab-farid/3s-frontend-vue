@@ -1,8 +1,6 @@
 <template>
   <div class="annotation">
-      <li v-for="annotationReview in annotationReviews">
-        {{ annotationReview.review_text }}
-      </li>
+
   </div>
 </template>
 
@@ -36,7 +34,7 @@ export default {
                     })
                     .then(function (response) {
                       that.annotationReviews = response.data;
-
+                      that.$emit('event_child', response.data);
                     })
                     .catch(function (error) {
                       console.log(error);

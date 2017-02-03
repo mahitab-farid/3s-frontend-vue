@@ -10,6 +10,7 @@ import Vue    from 'vue'
 import App    from './screens/App'
 import Menu   from './screens/Menu'
 import Signup from './components/signup'
+import Annotation from './components/Annotation'
 
 
 var VueRouter = require('vue-router');
@@ -41,7 +42,7 @@ new Vue({
 new Vue({
   el: '#menu',
   template: '<Menu/>',
-  components: { Menu},
+  components: { Menu, Annotation },
    http: {
     root: '/root',
     headers: {
@@ -49,6 +50,7 @@ new Vue({
       'Content-Type': 'application/x-www-form-urlencoded'
     }
   }
+
 });
 
 
