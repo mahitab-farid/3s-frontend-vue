@@ -5,7 +5,7 @@
         <div class="reviewtext">
         {{checkReview.review_text}}
         </div>
-        <div class="reviewsanswer">
+        <div class="reviewsanswer" v-bind:style="{ backgroundColor: mapColoring[checkReview.answer_text]}">
           Annotation result is {{checkReview.answer_text}}
         </div>
         <div class="reviewswrapper">
@@ -35,7 +35,8 @@ export default {
      checkReviews: [],
      questionAnswers: [],
      showRow: [],
-     checkerSubmit: {checkerIds: [], reviewsResult: [], reviewsResultId: []}
+     checkerSubmit: {checkerIds: [], reviewsResult: [], reviewsResultId: []},
+     mapColoring: ''
      
     }
   },
@@ -54,6 +55,10 @@ export default {
 
         eventQuestionAnswers: function(questionAnswers) {
           this.questionAnswers = questionAnswers;
+          this.mapColoring = new Object();
+          for (var i =0 ; i < questionAnswers.length; i++){
+              this.mapColoring[questionAnswers[i].answer] = questionAnswers[i].color;
+          }
           console.log('Event from questions component emitted', questionAnswers);
       },
 
@@ -86,14 +91,14 @@ export default {
 .reviewswrapper {
     text-align: center;
     margin-top: 20px;
-
+  margin-left:260px;
 }
 
 .reviewsanswer {
-   float: right;
-    text-align: center;
-     height:45px;
-      background-color: #D3D3D3;
+  float: right;
+  text-align: center;
+  height:45px;
+  background-color: #D3D3D3;
   width:350px;
   margin:20px auto;
 
@@ -115,7 +120,7 @@ export default {
 }
 
 #reviewsbutton{
-margin: 1px
+margin: 1px;
 
 }
 </style>

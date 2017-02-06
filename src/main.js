@@ -13,6 +13,7 @@ import Checker   from './screens/Checker'
 import Menu   from './screens/Menu'
 import Signup from './components/signup'
 import AnnotationComponent from './components/AnnotationComponent'
+import CheckCookiesComponent from './components/CheckCookiesComponent'
 import StatisticsDashboardComponent from './components/StatisticsDashboardComponent'
 import CheckerComponent from './components/CheckerComponent'
 import Questionanswers from './components/QuestionAnswers'
@@ -34,7 +35,7 @@ if (document.querySelector('#app')){
 new Vue({
   el: '#app',
   template: '<App/>',
-  components: { App},
+  components: { App, CheckCookiesComponent},
    http: {
     root: '/root',
     headers: {
