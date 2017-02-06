@@ -2,20 +2,20 @@
   <div  id="annotation">
     
     <div v-for="(annotationReview, index) in annotationReviews" v-show="showRow[index].show">
-    <div id="annotate">
-
+      <div id="annotate">
         {{annotationReview.review_text}}
-        </div>
-   
-        <div class="wrapper">
+      </div>
+      <div class="annotationWrapper">
         
-          <button id="answersbutton" class="btn btn-primary" @click="submitRow(index, annotationReview.id, questionAnswer.answer, questionAnswer.id)"    v-for="questionAnswer in questionAnswers"  v-bind:style="{ backgroundColor: questionAnswer.color}">
-            {{questionAnswer.answer}}
+        <button id="answersbutton" class="btn btn-primary" @click="submitRow(index, annotationReview.id, questionAnswer.answer, questionAnswer.id)"    v-for="questionAnswer in questionAnswers"  v-bind:style="{ backgroundColor: questionAnswer.color}">
+          
+          {{questionAnswer.answer}}
 
-     </div>
+      </div>
     </div> 
-  <annotationComponent v-on:event_annotation="eventAnnotation" :annotationSubmit="annotationSubmit"></annotationComponent>
-  <questionAnswers v-on:event_questionAnswers="eventQuestionAnswers"></questionAnswers>
+      <annotationComponent v-on:event_annotation="eventAnnotation" :annotationSubmit="annotationSubmit"></annotationComponent>
+      
+      <questionAnswers v-on:event_questionAnswers="eventQuestionAnswers"></questionAnswers>
   </div>
 </template>
 
@@ -89,7 +89,7 @@ export default {
 
 }
 
-.wrapper {
+.annotationWrapper {
     text-align: center;
 }
 
