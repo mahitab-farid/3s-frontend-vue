@@ -9,8 +9,12 @@
 import Vue    from 'vue'
 import App    from './screens/App'
 import Annotation   from './screens/Annotation'
+import Checker   from './screens/Checker'
+import Menu   from './screens/Menu'
 import Signup from './components/signup'
 import AnnotationComponent from './components/AnnotationComponent'
+import StatisticsDashboardComponent from './components/StatisticsDashboardComponent'
+import CheckerComponent from './components/CheckerComponent'
 import Questionanswers from './components/QuestionAnswers'
 
 
@@ -26,6 +30,7 @@ var router = new VueRouter({
 });
 
 /* eslint-disable no-new */
+if (document.querySelector('#app')){
 new Vue({
   el: '#app',
   template: '<App/>',
@@ -38,12 +43,13 @@ new Vue({
     }
   }
 });
+}
 
-
+if (document.querySelector('#annotation')) {
 new Vue({
   el: '#annotation',
   template: '<Annotation/>',
-  components: { Annotation, AnnotationComponent, Questionanswers },
+  components: { Annotation, AnnotationComponent, Questionanswers},
    http: {
     root: '/root',
     headers: {
@@ -53,7 +59,39 @@ new Vue({
   }
 
 });
+}
 
+if (document.querySelector('#checker')){
+new Vue({
+  el: '#checker',
+  template: '<Checker/>',
+  components: { Checker, Questionanswers , CheckerComponent, StatisticsDashboardComponent},
+   http: {
+    root: '/root',
+    headers: {
+      'access-control-allow-origin,content-type': '*',
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  }
+
+});
+}
+
+if (document.querySelector('#menu')){
+new Vue({
+  el: '#menu',
+  template: '<Menu/>',
+  components: {Menu, StatisticsDashboardComponent},
+   http: {
+    root: '/root',
+    headers: {
+      'access-control-allow-origin,content-type': '*',
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  }
+
+});
+}
 
 router.map({
   '/sign': {

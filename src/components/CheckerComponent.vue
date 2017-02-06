@@ -1,7 +1,7 @@
 <template>
-  <div class="annotationComponent">
+  <div class="checkerComponent">
     <div class="center">
-      <button @click="submit()" id="annotation">Submit</button>
+      <button @click="submit()" id="checker">Submit</button>
     </div>
   </div>
 </template>
@@ -9,34 +9,34 @@
 <script>
 export default {
   
-  name: 'annotationComponent',
+  name: 'checkerComponent',
   components: {},
-  props: ['annotationSubmit'],
+  props: ['checkerSubmit'],
   data () {
     return {
-      annotationReviews: []
+      checkerReviews: []
     }
   },
       
   mounted: function(){
-    this.getAnnotationReviews();
+    this.getCheckReviews();
   },
 
   methods: {
 
-        getAnnotationReviews: function(){
+        getCheckReviews: function(){
 
                   var that = this;
                                              
-                  axios.get('http://localhost:9010/annotation/getAssignedAnnotationReviews', {
+                  axios.get('http://localhost:9010/checker/getAssignedCheckingReviews', {
                       params: {
                         user_id: window.sessionStorage.getItem('user_id'),
                         question_code: 'pos'
                       }
                     })
                     .then(function (response) {
-                      that.annotationReviews = response.data;
-                      that.$emit('event_annotation', response.data);
+                      that.checkerReviews = response.data;
+                      that.$emit('event_checker', response.data);
                     })
                     .catch(function (error) {
                       console.log(error);
@@ -46,30 +46,30 @@ export default {
 
       submit: function(){
 
-        if (this.annotationSubmit.annotationIds.length == 0){
+        if (this.checkerSubmit.checkerIds.length == 0){
              alert("There is no data to fetch !");
              return;
         }
         var that = this;
         var formData = new FormData();
         formData.append('user_id', window.sessionStorage.getItem('user_id'));
-        formData.append('annotationIds', this.annotationSubmit.annotationIds);
-        formData.append('reviewsResult', this.annotationSubmit.reviewsResult);
-        formData.append('reviewsResultId', this.annotationSubmit.reviewsResultId);    
+        formData.append('checkerIds', this.checkerSubmit.checkerIds);
+        formData.append('reviewsResult', this.checkerSubmit.reviewsResult);
+        formData.append('reviewsResultId', this.checkerSubmit.reviewsResultId);    
 
         axios({
           method: 'POST',
-          url: 'http://localhost:9010/Annotation/annotationSubmit',
+          url: 'http://localhost:9010/checker/checkSubmit',
           data: formData,
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         })
         .then(function (response) {
             console.log('[.] Success : ', response);
-            that.annotationSubmit.annotationIds = [];
-            that.annotationSubmit.reviewsResult = [];
-            that.annotationSubmit.reviewsResultId = [];
+            that.checkerSubmit.checkerIds = [];
+            that.checkerSubmit.reviewsResult = [];
+            that.checkerSubmit.reviewsResultId = [];
 
-            that.getAnnotationReviews();
+            that.getCheckReviews();
 
             
         })
@@ -86,7 +86,7 @@ export default {
 </script>
 
 <style>
-#annotationComponent{
+#checkerComponent{
 
 }
 
