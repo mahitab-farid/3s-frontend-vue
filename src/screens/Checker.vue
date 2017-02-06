@@ -1,17 +1,21 @@
 <template>
   <div id="checker">
+
     <div v-for="(checkReview, index) in checkReviews" v-show="showRow[index].show">
+        <div class="reviewtext">
         {{checkReview.review_text}}
-        <div class="center">
-          {{checkReview.answer_text}}
         </div>
-        <div class="wrapper">
-          <button @click="submitRow(index, checkReview.id, questionAnswer.answer, questionAnswer.id)"    v-for="questionAnswer in questionAnswers">
+        <div class="reviewsanswer">
+          Annotation result is {{checkReview.answer_text}}
+        </div>
+        <div class="reviewswrapper">
+          <button id="reviewsbutton" class="btn btn-primary" @click="submitRow(index, checkReview.id, questionAnswer.answer, questionAnswer.id)"    v-for="questionAnswer in questionAnswers" v-bind:style="{ backgroundColor: questionAnswer.color}">
             {{questionAnswer.answer}}
         </div>
     </div> 
   <checkerComponent v-on:event_checker="eventChecker" :checkerSubmit="checkerSubmit"></checkerComponent>
   <questionAnswers v-on:event_questionAnswers="eventQuestionAnswers"></questionAnswers>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   </div>
 </template>
 
@@ -79,15 +83,39 @@ export default {
 
 }
 
-.wrapper {
-    text-align: right;
-}
-
-.center {
+.reviewswrapper {
     text-align: center;
+    margin-top: 20px;
+
 }
 
+.reviewsanswer {
+   float: right;
+    text-align: center;
+     height:45px;
+      background-color: #D3D3D3;
+  width:350px;
+  margin:20px auto;
 
+   font-size: 20px;
+   font-family: "sans-serif";
+   border: 2px solid black;
+   padding: 6px;
+}
 
+.reviewtext{
+    height:150px;
+  /*width:1170px;*/
+  overflow:scroll;
+  background-color:#F6F6F6;
+  text-align: center;
+  width:1600px;
+   margin:20px auto;
+   font-size: 20px
+}
 
+#reviewsbutton{
+margin: 1px
+
+}
 </style>
