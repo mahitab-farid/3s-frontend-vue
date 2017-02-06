@@ -1,7 +1,7 @@
 <template>
 	<div class="questionAnswers">
 
-    </div> 
+  </div> 
 </template>
 
 

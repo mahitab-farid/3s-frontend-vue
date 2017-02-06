@@ -1,8 +1,10 @@
 <template>
   <div class="annotationComponent">
     <div class="center">
-      <button @click="submit()" id="annotation">Submit</button>
+      <button class="btn btn-info" @click="submit()" id="annotation">Submit</button>
+
     </div>
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   </div>
 </template>
 
