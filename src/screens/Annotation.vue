@@ -35,7 +35,6 @@ export default {
      annotationReviews: [],
      questionAnswers: [],
      showRow: [],
-     fish: true,
      annotationSubmit: {annotationIds: [], reviewsResult: [], reviewsResultId: []}
      
     }
