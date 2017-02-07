@@ -24,7 +24,6 @@ Vue.use(VueRouter);
 Vue.use(axios);
 
 
-
 var router = new VueRouter({
   saveScrollPosition: true,
   history: true

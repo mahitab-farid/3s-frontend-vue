@@ -1,5 +1,7 @@
 <template>
 
+
+  
   <div class="login">
 
     <div class="login-wrap">
@@ -42,6 +44,9 @@
 <script>
   import Signup from './signup.vue';
   import Hello from './Hello.vue';
+  
+  const Enc = require('./../encryption.js');
+  module.exports = new Enc();
 
 export default {
   
@@ -61,8 +66,7 @@ export default {
     }
   },
           mounted: function(){
-            
-            this.checkCookie();
+            module.exports.AES_Init();
           },
       
           methods: {

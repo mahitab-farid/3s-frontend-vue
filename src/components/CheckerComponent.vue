@@ -2,6 +2,7 @@
   <div class="checkerComponent">
     <div class="center">
       <button @click="submit()" id="checker">Submit</button>
+      <button @click="getCheckReviews()" id="NextReviews">Get Next</button>
     </div>
   </div>
 </template>
@@ -35,6 +36,10 @@ export default {
                       }
                     })
                     .then(function (response) {
+                      if (response.status == 204){
+                          alert('There is No reviews!');
+                      }
+                      
                       that.checkerReviews = response.data;
                       that.$emit('event_checker', response.data);
                     })
@@ -68,9 +73,6 @@ export default {
             that.checkerSubmit.checkerIds = [];
             that.checkerSubmit.reviewsResult = [];
             that.checkerSubmit.reviewsResultId = [];
-
-            that.getCheckReviews();
-
             
         })
         .catch(function (error) {
