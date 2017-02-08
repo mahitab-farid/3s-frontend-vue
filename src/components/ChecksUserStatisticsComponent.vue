@@ -1,9 +1,9 @@
 <template>
   
-  <div id="annotationUserStatisticsComponent">
-      {{computedUserAnnotationStats}}
-    <div v-for="userAnnotationStatistic in userAnnotationStatistics">
-     {{userAnnotationStatistic.count}} Annotation reviews   in   {{userAnnotationStatistic.date}}
+  <div id="checksUserStatisticsComponent">
+      {{computedUserchecksStats}}
+    <div v-for="userChecksStatistic in userChecksStatistics">
+     {{userChecksStatistic.count}} Check reviews   in   {{userChecksStatistic.date}}
     </div>  
   </div>
 </template>
@@ -12,7 +12,7 @@
 <script>
 
 export default {
-  name: 'annotationUserStatisticsComponent',
+  name: 'checksUserStatisticsComponent',
   components: {
     
   },
@@ -21,13 +21,13 @@ export default {
  
   data(){
     return{
-      userAnnotationStatistics: []
+      userChecksStatistics: []
     }
   },
 
   computed:{
-    computedUserAnnotationStats: function(){
-        this.getUserAnnotationStatistics();
+    computedUserchecksStats: function(){
+        this.getUserChecksStatistics();
     }
   },
 
@@ -35,17 +35,17 @@ export default {
   methods: {
 
 
-    getUserAnnotationStatistics: function(){
+    getUserChecksStatistics: function(){
 
       var that = this;                
-      axios.get('http://localhost:9010/administration/getUserAnnotationStatistics', {
+      axios.get('http://localhost:9010/administration/getUserchecksStatistics', {
 
                       params: {
                         user_id: that.user_id
                       }
         })
         .then(function (response) {
-          that.userAnnotationStatistics = response.data;
+          that.userChecksStatistics = response.data;
         })
         .catch(function (error) {
           console.log(error);

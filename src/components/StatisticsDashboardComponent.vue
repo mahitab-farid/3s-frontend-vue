@@ -18,7 +18,7 @@
       <tbody>
         <tr v-for="usersStatistic in usersStatistics">
             
-           <td> <a href="javascript:void(0)" @click="showTab(usersStatistic.user_id)">{{usersStatistic.user_name}}</a></td>
+           <td> <a href="javascript:void(0)" @click="showTab(usersStatistic.user_id, usersStatistic.user_name)">{{usersStatistic.user_name}}</a></td>
             
           <td>{{usersStatistic.numOfAnnotationReviews}}</td>
           <td>{{usersStatistic.numOfChecksReviews}}</td>
@@ -30,7 +30,7 @@
         </tbody>
     </table>
     
-    <div id="light" class="white_content">This is the lightbox content.
+    <div id="light" class="white_content">{{currentUser.name}}
       <ul class="tab">
         <li><a href="javascript:void(0)" class="tablinks" @click="tabWrite(event, 'Annotation Statistics')">Annotation Statistics</a></li>
         <li><a href="javascript:void(0)" class="tablinks" @click="tabWrite(event, 'Checks Statistics')">Checks Statistics</a></li>
@@ -38,11 +38,11 @@
       </ul>
 
       <div id="Annotation Statistics" class="tabcontent">
-        <annotationUserStatisticsComponent :user_id="currentUser"></annotationUserStatisticsComponent>
+        <annotationUserStatisticsComponent :user_id="currentUser.id"></annotationUserStatisticsComponent>
       </div>
 
       <div id="Checks Statistics" class="tabcontent">
-        <h3>Tab2</h3>
+        <checksUserStatisticsComponent :user_id="currentUser.id"></checksUserStatisticsComponent>
       </div>
 
       <div id="Lexicons Statistics" class="tabcontent">
@@ -59,17 +59,18 @@
 <script>
 
 import AnnotationUserStatisticsComponent from './AnnotationUserStatisticsComponent.vue';
+import ChecksUserStatisticsComponent from './ChecksUserStatisticsComponent.vue';
 
 export default {
   name: 'statisticsDashboardComponent',
   components: {
-    AnnotationUserStatisticsComponent
+    AnnotationUserStatisticsComponent, ChecksUserStatisticsComponent
   },
  
   data(){
     return{
       usersStatistics: [],
-      currentUser: ''
+      currentUser: {id: '', name: ''}
     }
   },
 
@@ -96,29 +97,26 @@ export default {
 
 
      tabWrite: function(evt, cityName) {
-
-        this.$refs.getUserAnnotationStatistics();
+      
         var i, tabcontent, tablinks;
         tabcontent = document.getElementsByClassName("tabcontent");
         for (i = 0; i < tabcontent.length; i++) {
             tabcontent[i].style.display = "none";
         }
+     
         tablinks = document.getElementsByClassName("tablinks");
         for (i = 0; i < tablinks.length; i++) {
             tablinks[i].className = tablinks[i].className.replace(" active", "");
         }
+
         document.getElementById(cityName).style.display = "block";
-        evt.currentTarget.className += " active";
+       // evt.currentTarget.className += " active";
     },
-    showTab: function(userId){
+    showTab: function(userId, userName){
       document.getElementById('light').style.display='block';
       document.getElementById('fade').style.display='block';
-      this.currentUser = userId;
-
-
-
-
-      console.log("[.] user id : ",userId);
+      this.currentUser.id = userId;
+      this.currentUser.name = userName;
     }    
   }
 
