@@ -1,8 +1,8 @@
 <template>
   <div class="annotationComponent">
+    {{computedAnnotationSubmit}}
     <div class="center">
 
-      <button class="btn btn-info" @click="submit()" id="annotation">Submit</button>
       <button class="btn btn-info" @click="getAnnotationReviews()" id="annotation">Get Next</button>
       
     </div>
@@ -15,15 +15,25 @@ export default {
   
   name: 'annotationComponent',
   components: {},
-  props: ['annotationSubmit'],
+  props: ['annotationSubmit', 'numOfReviews'],
   data () {
     return {
       annotationReviews: []
+
     }
   },
       
   mounted: function(){
     this.getAnnotationReviews();
+  },
+
+  computed:{
+    computedAnnotationSubmit: function(){
+          console.log('hello: ',this.numOfReviews);
+        if (this.numOfReviews == 0 ){
+            this.submit();
+        }
+    }
   },
 
   methods: {
@@ -42,10 +52,12 @@ export default {
                       console.log('response: ',response);                    
                       if (response.status == 204){
                         alert('There is No reviews!');
-                        }
+                      }else{
 
-                      that.annotationReviews = response.data;
-                      that.$emit('event_annotation', response.data);
+                        that.annotationReviews = response.data;
+                        that.numOfReviews = response.data.length;
+                        that.$emit('event_annotation', response.data);
+                      }
                     })
                     .catch(function (error) {
                       console.log(error);
@@ -54,11 +66,10 @@ export default {
         },
 
       submit: function(){
+        console.log('bolbol',this.annotationSubmit.annotationIds.length);
+        if (this.annotationSubmit.annotationIds.length == 0)
+            return;
 
-        if (this.annotationSubmit.annotationIds.length == 0){
-             alert("There is no data to fetch !");
-             return;
-        }
         var that = this;
         var formData = new FormData();
         formData.append('user_id', window.sessionStorage.getItem('user_id'));
@@ -77,6 +88,7 @@ export default {
             that.annotationSubmit.annotationIds = [];
             that.annotationSubmit.reviewsResult = [];
             that.annotationSubmit.reviewsResultId = [];
+            that.numOfReviews = 0;
             
         })
         .catch(function (error) {

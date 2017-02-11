@@ -1,7 +1,7 @@
 <template>
   <div  id="annotation">
-    
-    <div v-for="(annotationReview, index) in annotationReviews" v-show="showRow[index].show">
+    <button id="answersbutton" class="btn btn-primary" @click="getPrevious()">Previous</button>
+    <div v-for="(annotationReview, index) in annotationReviews">
       <div id="annotate">
         {{annotationReview.review_text}}
       </div>
@@ -13,7 +13,7 @@
 
       </div>
     </div> 
-      <annotationComponent v-on:event_annotation="eventAnnotation" :annotationSubmit="annotationSubmit"></annotationComponent>
+      <annotationComponent v-on:event_annotation="eventAnnotation" :annotationSubmit="annotationSubmit" :numOfReviews="numOfReviews"></annotationComponent>
       
       <questionAnswers v-on:event_questionAnswers="eventQuestionAnswers"></questionAnswers>
   </div>
@@ -33,8 +33,9 @@ export default {
   data(){
     return{
      annotationReviews: [],
+     previousAnnotationStack: [],
      questionAnswers: [],
-     showRow: [],
+     numOfReviews: 0,
      annotationSubmit: {annotationIds: [], reviewsResult: [], reviewsResultId: []}
      
     }
@@ -46,12 +47,9 @@ export default {
   },
   methods: {
       eventAnnotation: function(annotationReviews) {
+        this.numOfReviews = annotationReviews.length;
         this.annotationReviews = annotationReviews;
-        this.showRow = [];
-        var show = '';
-        for (var i = 0; i < annotationReviews.length; i++) {
-             this.showRow.push({show: true});
-        }
+  
         
         console.log('Event from annotation component emitted', annotationReviews);
       },
@@ -67,8 +65,27 @@ export default {
           this.annotationSubmit.annotationIds.push(annotationId);
           this.annotationSubmit.reviewsResult.push(annotationAnswer);
           this.annotationSubmit.reviewsResultId.push(annotationAnswerId);
-          this.showRow[index].show=false;
-      }
+          this.previousAnnotationStack.push(this.annotationReviews[index]);
+          this.annotationReviews.splice(index, 1);
+          this.numOfReviews -= 1;
+          console.log('length: ', this.annotationReviews.length);
+      },
+
+      getPrevious: function(){
+
+        if(this.previousAnnotationStack.length != 0){
+            this.annotationReviews.unshift(this.previousAnnotationStack.pop());      // add at the begininig of array
+            this.numOfReviews += 1;
+            console.log('submit: ', this.annotationSubmit.annotationIds.length);
+            if(this.annotationSubmit.annotationIds.length != 0){
+              this.annotationSubmit.annotationIds.pop();
+              this.annotationSubmit.reviewsResult.pop();
+              this.annotationSubmit.reviewsResultId.pop();
+            }
+            return;
+        }
+          alert('No Previous data!');   
+    }
   }
 
 }

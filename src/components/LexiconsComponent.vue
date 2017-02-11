@@ -1,12 +1,13 @@
 <template>
   <div class="lexiconComponent">
+        {{computedLexiconsSubmit}}
     <div class="center">
 
-      <button class="btn btn-info" @click="submit()" id="lexicon">Submit</button>
       <button class="btn btn-info" @click="getLexicons()" id="lexicon">Get Next</button>
       
     </div>
        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
   </div>
 </template>
 
@@ -15,7 +16,7 @@ export default {
   
   name: 'lexiconComponent',
   components: {},
-  props: ['lexiconsSubmit'],
+  props: ['lexiconsSubmit', 'numOfLexicons'],
   data () {
     return {
       lexicons: []
@@ -26,6 +27,13 @@ export default {
     this.getLexicons();
   },
 
+  computed:{
+    computedLexiconsSubmit: function(){
+        if (this.numOfLexicons == 0 ){
+            this.submit();
+        }
+    }
+  }, 
   methods: {
 
         getLexicons: function(){
@@ -41,13 +49,15 @@ export default {
                       console.log('response: ',response);                    
                       if (response.status == 204){
                         alert('There is No lexicons!');
-                        }
+                      }else{
 
-                      that.lexicons = response.data;
-                      that.$emit('event_lexicons', response.data);
+                        that.lexicons = response.data;
+                        that.numOfLexicons = response.data.length;
+                        that.$emit('event_lexicons', response.data);
+                      }
                     })
                     .catch(function (error) {
-                      console.log(error);
+                        console.log(error);
                     });
 
         },
@@ -55,7 +65,6 @@ export default {
       submit: function(){
 
         if (this.lexiconsSubmit.lexiconsIds.length == 0){
-             alert("There is no data to fetch !");
              return;
         }
         var that = this;
@@ -76,7 +85,7 @@ export default {
             that.lexiconsSubmit.lexiconsIds = [];
             that.lexiconsSubmit.wordsEdits = [];
             that.lexiconsSubmit.lexiconsTypeIds = [];
-            
+            that.numOfLexicons = 0;
         })
         .catch(function (error) {
           console.log('[.] Fail : ',error.response.data);

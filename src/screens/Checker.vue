@@ -1,7 +1,7 @@
 <template>
   <div id="checker">
-
-    <div v-for="(checkReview, index) in checkReviews" v-show="showRow[index].show">
+    <button id="answersbutton" class="btn btn-primary" @click="getPrevious()">Previous</button>
+    <div v-for="(checkReview, index) in checkReviews">
         <div class="reviewtext">
         {{checkReview.review_text}}
         </div>
@@ -13,7 +13,7 @@
             {{questionAnswer.answer}}
         </div>
     </div> 
-  <checkerComponent v-on:event_checker="eventChecker" :checkerSubmit="checkerSubmit"></checkerComponent>
+  <checkerComponent v-on:event_checker="eventChecker" :checkerSubmit="checkerSubmit" :numOfReviews="numOfReviews"></checkerComponent>
   <questionAnswers v-on:event_questionAnswers="eventQuestionAnswers"></questionAnswers>
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   </div>
@@ -35,6 +35,8 @@ export default {
      checkReviews: [],
      questionAnswers: [],
      showRow: [],
+     numOfReviews: 0,
+     previousChecksStack: [],
      checkerSubmit: {checkerIds: [], reviewsResult: [], reviewsResultId: []},
      mapColoring: ''
      
@@ -43,6 +45,7 @@ export default {
 
   methods: {
       eventChecker: function(checkerReviews) {
+        this.numOfReviews = checkerReviews.length;
         this.checkReviews = checkerReviews;
         this.showRow = [];
         var show = '';
@@ -68,8 +71,27 @@ export default {
           this.checkerSubmit.checkerIds.push(checkerId);
           this.checkerSubmit.reviewsResult.push(checkerAnswer);
           this.checkerSubmit.reviewsResultId.push(checkerAnswerId);
+          this.previousChecksStack.push(this.checkReviews[index]);
+          this.checkReviews.splice(index, 1);
+          this.numOfReviews -= 1;
           this.showRow[index].show=false;
-      }
+      },
+
+      getPrevious: function(){
+
+        if(this.previousChecksStack.length != 0){
+            this.checkReviews.unshift(this.previousChecksStack.pop());      // add at the begininig of array
+            this.numOfReviews += 1;
+            
+            if(this.checkerSubmit.checkerIds.length != 0){
+              this.checkerSubmit.checkerIds.pop();
+              this.checkerSubmit.reviewsResult.pop();
+              this.checkerSubmit.reviewsResultId.pop();
+            }
+            return;
+        }
+          alert('No Previous data!');   
+    }
   }
 
 }

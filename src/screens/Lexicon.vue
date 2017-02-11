@@ -1,6 +1,7 @@
 <template>
   <div id="lexicon">
-    <div v-for="(lexicon, index) in lexicons" v-show="showRow[index].show">
+    <button id="answersbutton" style="float: left;" class="btn btn-primary" @click="getPrevious()">Previous</button>
+    <div v-for="(lexicon, index) in lexicons">
       <div :id="'wordEdit'+index" class="lexiconWord" >
         <div id="wordEdit" contenteditable="true">
         {{lexicon.word}}
@@ -14,7 +15,7 @@
 
       </div>
     </div> 
-    <lexiconsComponent v-on:event_lexicons="eventLexicons" :lexiconsSubmit="lexiconsSubmit"></lexiconsComponent>
+    <lexiconsComponent v-on:event_lexicons="eventLexicons" :lexiconsSubmit="lexiconsSubmit" :numOfLexicons="numOfLexicons"></lexiconsComponent>
     <lexiconAnswersTypesComponent v-on:event_lexiconAnswersTypes="eventLexiconAnswersTypes"></lexiconAnswersTypesComponent>
   </div>
 </template>
@@ -34,7 +35,8 @@ export default {
     return{
      lexicons: [],
      lexiconAnswersTypes: [],
-     showRow: [],
+     previousLexiconStack: [],
+     numOfLexicons: 0,
      lexiconsSubmit: {lexiconsIds: [], wordsEdits: [], lexiconsTypeIds: []}
      
     }
@@ -46,12 +48,8 @@ export default {
   },
   methods: {
       eventLexicons: function(lexicons) {
+        this.numOfLexicons = lexicons.length;
         this.lexicons = lexicons;
-        this.showRow = [];
-        var show = '';
-        for (var i = 0; i < lexicons.length; i++) {
-             this.showRow.push({show: true});
-        }
         
         console.log('Event from lexicons component emitted', lexicons);
       },
@@ -69,9 +67,27 @@ export default {
           this.lexiconsSubmit.lexiconsIds.push(lexiconId);
           this.lexiconsSubmit.wordsEdits.push(wordEdit);
           this.lexiconsSubmit.lexiconsTypeIds.push(lexiconAnswerTypeId);
-          this.showRow[index].show=false;
+          this.previousLexiconStack.push(this.lexicons[index]);
+          this.lexicons.splice(index, 1);
+          this.numOfLexicons -= 1;
           
-      }
+      },
+
+      getPrevious: function(){
+
+        if(this.previousLexiconStack.length != 0){
+            this.lexicons.unshift(this.previousLexiconStack.pop());      // add at the begininig of array
+            this.numOfLexicons += 1;
+            console.log('submit: ', this.lexiconsSubmit.lexiconsIds.length);
+            if(this.lexiconsSubmit.lexiconsIds.length != 0){
+              this.lexiconsSubmit.lexiconsIds.pop();
+              this.lexiconsSubmit.wordsEdits.pop();
+              this.lexiconsSubmit.lexiconsTypeIds.pop();
+            }
+            return;
+        }
+          alert('No Previous data!');   
+    }
   }
 
 }

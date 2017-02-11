@@ -2,7 +2,7 @@
   "name": "annotation-system",
   "version": "1.0.0",
   "description": "A Vue.js Front-End for NLP annotation",
-  "authors": ["Mahitab Frid <mahitabfarid@smartera3s.com>","Mohamed Nabil <mohamednabil00000@gmail.com>",],
+  "authors": ["Mahitab Frid <mahitabfarid@smartera3s.com>","Mohamed Nabil <mohamednabil00000@gmail.com>"],
   "private": true,
   "main": "dist/vue-resource.common.js",
   "jsnext:main": "dist/vue-resource.es2015.js",

@@ -1,7 +1,7 @@
 <template>
   <div class="checkerComponent">
+    {{computedChecksSubmit}}
     <div class="center">
-      <button @click="submit()" id="checker">Submit</button>
       <button @click="getCheckReviews()" id="NextReviews">Get Next</button>
     </div>
   </div>
@@ -12,7 +12,7 @@ export default {
   
   name: 'checkerComponent',
   components: {},
-  props: ['checkerSubmit'],
+  props: ['checkerSubmit', 'numOfReviews'],
   data () {
     return {
       checkerReviews: []
@@ -21,6 +21,15 @@ export default {
       
   mounted: function(){
     this.getCheckReviews();
+  },
+
+  computed:{
+    computedChecksSubmit: function(){
+        console.log('hello: ',this.numOfReviews);
+        if (this.numOfReviews == 0 ){
+            this.submit();
+        }
+    }
   },
 
   methods: {
@@ -39,9 +48,11 @@ export default {
                       if (response.status == 204){
                           alert('There is No reviews!');
                       }
-                      
-                      that.checkerReviews = response.data;
-                      that.$emit('event_checker', response.data);
+                      else{
+                        that.checkerReviews = response.data;
+                        that.numOfReviews = response.data.length;
+                        that.$emit('event_checker', response.data);
+                      }
                     })
                     .catch(function (error) {
                       console.log(error);
@@ -51,10 +62,9 @@ export default {
 
       submit: function(){
 
-        if (this.checkerSubmit.checkerIds.length == 0){
-             alert("There is no data to fetch !");
+        if (this.checkerSubmit.checkerIds.length == 0)
              return;
-        }
+        
         var that = this;
         var formData = new FormData();
         formData.append('user_id', window.sessionStorage.getItem('user_id'));
@@ -73,7 +83,8 @@ export default {
             that.checkerSubmit.checkerIds = [];
             that.checkerSubmit.reviewsResult = [];
             that.checkerSubmit.reviewsResultId = [];
-            
+            that.numOfReviews = 0;
+
         })
         .catch(function (error) {
           console.log('[.] Fail : ',error.response.data);
