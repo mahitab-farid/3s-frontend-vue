@@ -34,7 +34,7 @@
 <script>
 
 export default {
-  
+
   name: 'Signup',
   data () {
     return {
@@ -46,49 +46,49 @@ export default {
       currentUser: {
         id: '',
         accessToken: '',
-        userName: '' 
+        userName: ''
       }
     }
   },
-  
+
   methods: {
     redirection: function(){
-      
+
       window.sessionStorage.setItem('user_id', this.currentUser.id);
       window.sessionStorage.setItem('accessToken', this.currentUser.accessToken);
       window.sessionStorage.setItem('userName', this.currentUser.userName);
       window.location.replace("../../home.html");
+
     } ,
     signup: function(){
       if (this.validateInputs()){
-                  var that = this;
-                  
-                  var formData = new FormData();
-                  formData.append('user_name', this.user_name);
-                  formData.append('password', this.password);
-                  formData.append('email', this.email);
-                  formData.append('phone', this.phone);
+        var that = this;
 
-                           
-                  axios({
-                    method: 'POST',
-                    url: 'http://localhost:9010/user/signup',
-                    data: formData,
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-                  })
-                  .then(function (response) {
-                      console.log('[.] Success : ', response);
+        var formData = new FormData();
+        formData.append('user_name', this.user_name);
+        formData.append('password', this.password);
+        formData.append('email', this.email);
+        formData.append('phone', this.phone);
 
-                      that.currentUser.id = response.data.user_id;
-                      that.currentUser.accessToken = response.data.access_token;
-                      that.currentUser.userName = response.data.user_name;
 
-                      that.redirection();
-                     
-                  })
-                  .catch(function (error) {
-                    alert('User Exist before!');
-                  });
+        axios({
+          method: 'POST',
+          url: 'http://localhost:9010/user/signup',
+          data: formData,
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        })
+        .then(function (response) {
+          console.log('[.] Success : ', response);
+
+          that.currentUser.id = response.data.user_id;
+          that.currentUser.accessToken = response.data.access_token;
+          that.currentUser.userName = response.data.user_name;
+
+          that.redirection();
+        })
+        .catch(function (error) {
+          alert('User Exist before!');
+        });
       }
     },
 
@@ -103,7 +103,7 @@ export default {
       }
       if (this.password.length < 3){
           alert('password is very week !');
-          return false;     
+          return false;
       }
       if (this.password != this.repeated_password){
           alert('password not same repeated password !');
