@@ -45,9 +45,6 @@
   import Signup from './signup.vue';
   import Hello from './Hello.vue';
   
-  const Enc = require('./../encryption.js');
-  module.exports = new Enc();
-
 export default {
   
   name: 'Login',
@@ -66,7 +63,7 @@ export default {
     }
   },
           mounted: function(){
-            module.exports.AES_Init();
+            
           },
       
           methods: {
@@ -76,7 +73,7 @@ export default {
                   window.sessionStorage.setItem('user_id', this.currentUser.id);
                   window.sessionStorage.setItem('accessToken', this.currentUser.accessToken);
                   window.sessionStorage.setItem('userName', this.currentUser.userName);
-                  window.location.replace("../../menu.html");
+                  window.location.replace("../../home.html");
             } , 
 
 

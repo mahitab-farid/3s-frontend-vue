@@ -3,7 +3,9 @@
   <div id="checksUserStatisticsComponent">
       {{computedUserchecksStats}}
     <div v-for="userChecksStatistic in userChecksStatistics">
-     {{userChecksStatistic.count}} Check reviews   in   {{userChecksStatistic.date}}
+      <li>
+        {{userChecksStatistic.count}}   Check reviews   in   {{userChecksStatistic.date}}
+      </li>  
     </div>  
   </div>
 </template>

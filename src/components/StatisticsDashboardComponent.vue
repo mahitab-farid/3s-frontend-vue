@@ -30,7 +30,7 @@
         </tbody>
     </table>
     
-    <div id="light" class="white_content">{{currentUser.name}}
+    <div id="light" class="white_content"><h3>{{currentUser.name}}'s Statistics</h3>
       <ul class="tab">
         <li><a href="javascript:void(0)" class="tablinks" @click="tabWrite(event, 'Annotation Statistics')">Annotation Statistics</a></li>
         <li><a href="javascript:void(0)" class="tablinks" @click="tabWrite(event, 'Checks Statistics')">Checks Statistics</a></li>
@@ -46,7 +46,7 @@
       </div>
 
       <div id="Lexicons Statistics" class="tabcontent">
-        <h3>Tab3</h3>
+        <lexiconsUserStatisticsComponent :user_id="currentUser.id"></lexiconsUserStatisticsComponent>
       </div> 
 
       <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">Close</a>
@@ -60,11 +60,12 @@
 
 import AnnotationUserStatisticsComponent from './AnnotationUserStatisticsComponent.vue';
 import ChecksUserStatisticsComponent from './ChecksUserStatisticsComponent.vue';
+import LexiconsUserStatisticsComponent from './LexiconsUserStatisticsComponent.vue';
 
 export default {
   name: 'statisticsDashboardComponent',
   components: {
-    AnnotationUserStatisticsComponent, ChecksUserStatisticsComponent
+    AnnotationUserStatisticsComponent, ChecksUserStatisticsComponent, LexiconsUserStatisticsComponent
   },
  
   data(){

@@ -1,10 +1,10 @@
 <template>
   
-  <div id="annotationUserStatisticsComponent">
-      {{computedUserAnnotationStats}}
-    <div v-for="userAnnotationStatistic in userAnnotationStatistics">
+  <div id="lexiconsUserStatisticsComponent">
+      {{computedUserLexiconsStats}}
+    <div v-for="userLexiconsStatistic in userLexiconsStatistics">
       <li>
-        {{userAnnotationStatistic.count}} Annotation reviews   in   {{userAnnotationStatistic.date}}
+        {{userLexiconsStatistic.count}}   Lexicons   in   {{userLexiconsStatistic.date}}
       </li>  
     </div>  
   </div>
@@ -14,7 +14,7 @@
 <script>
 
 export default {
-  name: 'annotationUserStatisticsComponent',
+  name: 'lexiconsUserStatisticsComponent',
   components: {
     
   },
@@ -23,13 +23,13 @@ export default {
  
   data(){
     return{
-      userAnnotationStatistics: []
+      userLexiconsStatistics: []
     }
   },
 
   computed:{
-    computedUserAnnotationStats: function(){
-        this.getUserAnnotationStatistics();
+    computedUserLexiconsStats: function(){
+        this.getUserLexiconsStatistics();
     }
   },
 
@@ -37,17 +37,18 @@ export default {
   methods: {
 
 
-    getUserAnnotationStatistics: function(){
+    getUserLexiconsStatistics: function(){
 
       var that = this;                
-      axios.get('http://localhost:9010/administration/getUserAnnotationStatistics', {
+      axios.get('http://localhost:9010/administration/getUserLexiconsStatistics', {
 
                       params: {
                         user_id: that.user_id
                       }
         })
         .then(function (response) {
-          that.userAnnotationStatistics = response.data;
+          that.userLexiconsStatistics = response.data;
+        
         })
         .catch(function (error) {
           console.log(error);

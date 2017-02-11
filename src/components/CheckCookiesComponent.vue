@@ -35,7 +35,7 @@ export default {
                   window.sessionStorage.setItem('user_id', this.currentUser.id);
                   window.sessionStorage.setItem('accessToken', this.currentUser.accessToken);
                   window.sessionStorage.setItem('userName', this.currentUser.userName);
-                  window.location.replace("../../menu.html");
+                  window.location.replace("../../home.html");
             } , 
 
             setCookie:function(cname,cvalue,exdays) {

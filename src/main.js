@@ -10,13 +10,16 @@ import Vue    from 'vue'
 import App    from './screens/App'
 import Annotation   from './screens/Annotation'
 import Checker   from './screens/Checker'
-import Menu   from './screens/Menu'
+import Home   from './screens/Home'
+import Lexicon   from './screens/Lexicon'
 import Signup from './components/signup'
 import AnnotationComponent from './components/AnnotationComponent'
 import CheckCookiesComponent from './components/CheckCookiesComponent'
 import StatisticsDashboardComponent from './components/StatisticsDashboardComponent'
 import CheckerComponent from './components/CheckerComponent'
 import Questionanswers from './components/QuestionAnswers'
+
+
 
 
 var VueRouter = require('vue-router');
@@ -77,11 +80,27 @@ new Vue({
 });
 }
 
-if (document.querySelector('#menu')){
+if (document.querySelector('#home')){
 new Vue({
-  el: '#menu',
-  template: '<Menu/>',
-  components: {Menu, StatisticsDashboardComponent},
+  el: '#home',
+  template: '<Home/>',
+  components: {Home, StatisticsDashboardComponent, Lexicon},
+   http: {
+    root: '/root',
+    headers: {
+      'access-control-allow-origin,content-type': '*',
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  }
+
+});
+}
+
+if (document.querySelector('#lexicon')){
+new Vue({
+  el: '#lexicon',
+  template: '<Lexicon/>',
+  components: {Lexicon},
    http: {
     root: '/root',
     headers: {

@@ -1,5 +1,6 @@
 <template>
-  <div id="menu">
+  <div id="home">
+    <menuComponent></menuComponent>
     <statisticsDashboardComponent></statisticsDashboardComponent>
 
 
@@ -9,11 +10,12 @@
 <script>
 
 import StatisticsDashboardComponent from '../components/StatisticsDashboardComponent'
+import MenuComponent from '../components/MenuComponent'
 
 export default {
-  name: 'menu',
+  name: 'home',
   components: {
-    StatisticsDashboardComponent
+    StatisticsDashboardComponent, MenuComponent
   },
  
   data(){
