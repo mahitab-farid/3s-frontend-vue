@@ -1,8 +1,12 @@
 <template>
   <div class="annotationComponent">
     <div class="center">
-      <button @click="submit()" id="annotation">Submit</button>
+
+      <button class="btn btn-info" @click="submit()" id="annotation">Submit</button>
+      <button class="btn btn-info" @click="getAnnotationReviews()" id="annotation">Get Next</button>
+      
     </div>
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   </div>
 </template>
 
@@ -35,6 +39,11 @@ export default {
                       }
                     })
                     .then(function (response) {
+                      console.log('response: ',response);                    
+                      if (response.status == 204){
+                        alert('There is No reviews!');
+                        }
+
                       that.annotationReviews = response.data;
                       that.$emit('event_annotation', response.data);
                     })
@@ -46,6 +55,10 @@ export default {
 
       submit: function(){
 
+        if (this.annotationSubmit.annotationIds.length == 0){
+             alert("There is no data to fetch !");
+             return;
+        }
         var that = this;
         var formData = new FormData();
         formData.append('user_id', window.sessionStorage.getItem('user_id'));
@@ -64,9 +77,6 @@ export default {
             that.annotationSubmit.annotationIds = [];
             that.annotationSubmit.reviewsResult = [];
             that.annotationSubmit.reviewsResultId = [];
-
-            that.getAnnotationReviews();
-
             
         })
         .catch(function (error) {

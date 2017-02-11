@@ -1,16 +1,21 @@
 <template>
-  <div id="annotation">
+  <div  id="annotation">
     
     <div v-for="(annotationReview, index) in annotationReviews" v-show="showRow[index].show">
-
+      <div id="annotate">
         {{annotationReview.review_text}}
-        <div class="wrapper">
-          <button @click="submitRow(index, annotationReview.id, questionAnswer.answer, questionAnswer.id)"    v-for="questionAnswer in questionAnswers">
-            {{questionAnswer.answer}}
-        </div>
+      </div>
+      <div class="annotationWrapper">
+        
+        <button id="answersbutton" class="btn btn-primary" @click="submitRow(index, annotationReview.id, questionAnswer.answer, questionAnswer.id)"    v-for="questionAnswer in questionAnswers"  v-bind:style="{ backgroundColor: questionAnswer.color}">
+          
+          {{questionAnswer.answer}}
+
+      </div>
     </div> 
-  <annotationComponent v-on:event_annotation="eventAnnotation" :annotationSubmit="annotationSubmit"></annotationComponent>
-  <questionAnswers v-on:event_questionAnswers="eventQuestionAnswers"></questionAnswers>
+      <annotationComponent v-on:event_annotation="eventAnnotation" :annotationSubmit="annotationSubmit"></annotationComponent>
+      
+      <questionAnswers v-on:event_questionAnswers="eventQuestionAnswers"></questionAnswers>
   </div>
 </template>
 
@@ -30,7 +35,6 @@ export default {
      annotationReviews: [],
      questionAnswers: [],
      showRow: [],
-     fish: true,
      annotationSubmit: {annotationIds: [], reviewsResult: [], reviewsResultId: []}
      
     }
@@ -78,13 +82,14 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   //text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 45px;
+  padding-top: 12px;
 
 
 }
 
-.wrapper {
-    text-align: right;
+.annotationWrapper {
+    text-align: center;
 }
 
 .center {
@@ -92,6 +97,18 @@ export default {
 }
 
 
+#annotate{
+  height:200px;
+  /*width:1170px;*/
+  overflow:scroll;
+  background-color:#F6F6F6;
+  text-align: center;
+  width:1600px;
+   margin:20px auto;
+   font-size: 20px
+}
 
-
+#answersbutton{
+margin: 2px;
+}
 </style>

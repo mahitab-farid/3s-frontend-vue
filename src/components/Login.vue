@@ -1,6 +1,8 @@
 <template>
 
-  <div class="app">
+
+  
+  <div class="login">
 
     <div class="login-wrap">
       <div class="login-html">
@@ -42,6 +44,9 @@
 <script>
   import Signup from './signup.vue';
   import Hello from './Hello.vue';
+  
+  const Enc = require('./../encryption.js');
+  module.exports = new Enc();
 
 export default {
   
@@ -60,6 +65,9 @@ export default {
 
     }
   },
+          mounted: function(){
+            module.exports.AES_Init();
+          },
       
           methods: {
 
@@ -70,6 +78,8 @@ export default {
                   window.sessionStorage.setItem('userName', this.currentUser.userName);
                   window.location.replace("../../menu.html");
             } , 
+
+
 
             login: function(){
                   var that = this;
@@ -91,6 +101,12 @@ export default {
                       that.currentUser.accessToken = response.data.access_token;
                       that.currentUser.userName = response.data.user_name;
 
+                      if($('#check').is(":checked")){
+                        that.setCookie("userId", that.currentUser.id, 30);
+                        that.setCookie("accessToken", that.currentUser.accessToken, 30);
+                        that.setCookie("userName", that.currentUser.userName, 30);
+                      }
+
                       that.redirection();
                   })
                   .catch(function (error) {
@@ -98,11 +114,16 @@ export default {
                     alert(error.response.data);
                   });
 
+            },
+
+
+            setCookie:function(cname,cvalue,exdays) {
+                var d = new Date();
+                d.setTime(d.getTime() + (exdays*24*60*60*1000));
+                var expires = "expires=" + d.toGMTString();
+                document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
             }
-
-
-
-        }
+     }
 }
 </script>
 
