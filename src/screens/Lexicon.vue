@@ -67,6 +67,7 @@ export default {
           this.lexiconsSubmit.lexiconsIds.push(lexiconId);
           this.lexiconsSubmit.wordsEdits.push(wordEdit);
           this.lexiconsSubmit.lexiconsTypeIds.push(lexiconAnswerTypeId);
+          this.lexicons[index].word = wordEdit;
           this.previousLexiconStack.push(this.lexicons[index]);
           this.lexicons.splice(index, 1);
           this.numOfLexicons -= 1;
