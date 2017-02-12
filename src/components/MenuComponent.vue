@@ -4,16 +4,18 @@
     <div id="myNav" class="overlay">
       <a href="javascript:void(0)" class="closebtn" @click="closeNav()">&times;</a>
       <div class="overlay-content">
-        <a href="#">Home</a>
+        <a v-link="{ path: '/lexicon' }">Home</a>
         <a href="#" >Reviews<span class="arrow"></span></a>
         <a href="#">Lexicons</a>
         <a href="#">Admin</a>
         <a href="#">Users</a>
-
+ 
+        
 
       </div>
     </div>
     <span style="font-size:30px;cursor:pointer" @click="openNav()">&#9776; Menu</span>
+    <router-view></router-view>
   </div>
 </template>
 

@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-
     <checkCookiesComponent v-on:check_cookies="checkCookies"></checkCookiesComponent>
     <login v-if="!isInCookies"></login>
     {{check}}

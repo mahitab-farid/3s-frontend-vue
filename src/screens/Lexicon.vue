@@ -71,9 +71,7 @@ export default {
           this.previousLexiconStack.push(this.lexicons[index]);
           this.lexicons.splice(index, 1);
           this.numOfLexicons -= 1;
-          
       },
-
       getPrevious: function(){
 
         if(this.previousLexiconStack.length != 0){

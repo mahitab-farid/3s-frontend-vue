@@ -1,0 +1,218 @@
+<template>
+  <div  id="approvedNewUsers">
+       
+      <div v-for="(unapprovedUser, index) in unapprovedUsers" v-show="showRow[index].show">
+         <div class="Pageright"> 
+          <p>user name: {{unapprovedUser.user_name}}</p>  
+          <p>email: {{unapprovedUser.email}}</p> 
+          <p>phone: {{unapprovedUser.phone}}</p>
+         </div> 
+          <div  style="text-align:center;margin-top:-60px">   
+              <a href="javascript:void(0)" @click="showTab()">Roles</a>
+          </div>
+          <button id="answersbutton" style="float: right;" @click="approvedUser(unapprovedUser.id, index)">Approved</button>
+          
+          <br></br>
+            
+      </div>
+
+      <div id="light" class="white_content"><h3>Roles</h3>
+
+        <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">Close</a>
+      </div>
+      <div id="fade" class="black_overlay"></div>
+  
+      <unapprovedUsersComponent v-on:event_unapprovedUsers="eventUnapprovedUsers"></unapprovedUsersComponent>
+      
+     
+  </div>
+</template>
+
+<script>
+
+import UnapprovedUsersComponent from '../components/UnapprovedUsersComponent'
+
+
+export default {
+  name: 'approvedNewUsers',
+  components: {
+    UnapprovedUsersComponent
+  },
+ 
+  data(){
+    return{
+      unapprovedUsers: [],
+      showRow: []
+    }
+  },
+
+
+    mounted: function(){
+
+  },
+  methods: {
+      eventUnapprovedUsers: function(unapprovedUsers) {
+        this.unapprovedUsers = unapprovedUsers;
+        this.showRow = [];
+        for (var i = 0 ; i < unapprovedUsers.length ; i++)
+          this.showRow.push({'show': true}); 
+
+        console.log('Event from unapproved component emitted', unapprovedUsers);
+      },
+
+      approvedUser: function(id, index){
+        this.showRow[index].show = false;
+        var that = this;
+        var formData = new FormData();
+        formData.append('id', id);
+   
+        axios({
+          method: 'POST',
+          url: 'http://localhost:9010/user/approvedUser',
+          data: formData,
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        })
+        .then(function (response) {
+            console.log('[.] Success : ', response);
+
+        })
+        .catch(function (error) {
+          console.log('[.] Fail : ',error.response.data);
+          alert(error.response.data);
+        });
+      },
+
+     tabWrite: function(evt, cityName) {
+      
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+     
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        document.getElementById(cityName).style.display = "block";
+       // evt.currentTarget.className += " active";
+    },
+    showTab: function(){
+      document.getElementById('light').style.display='block';
+      document.getElementById('fade').style.display='block';
+    } 
+  }
+
+}
+
+</script>
+
+<style scoped>
+#approvedNewUsers {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  //text-align: center;
+  color: #2c3e50;
+  margin-top: 45px;
+  padding-top: 12px;
+
+
+}
+
+.Wrapper {
+    text-align: center;
+}
+
+.center {
+    text-align: center;
+}
+
+
+
+.approved{
+  height:200px;
+  /*width:1170px;*/
+  overflow:scroll;
+  background-color:#F6F6F6;
+  text-align: center;
+  width:1600px;
+   margin:20px auto;
+   font-size: 20px
+}
+
+.Pageright{
+  margin-left:100px;
+}
+
+#answersbutton{
+margin: 2px;
+margin-top : -30px;
+margin-right:100px;
+}
+
+
+  ul.tab {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Float the list items side by side */
+ul.tab li {float: left;}
+
+/* Style the links inside the list items */
+ul.tab li a {
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of links on hover */
+ul.tab li a:hover {background-color: #ddd;}
+
+/* Create an active/current tablink class */
+ul.tab li a:focus, .active {background-color: #ccc;}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+  
+    border-top: none;
+}
+.black_overlay {
+  display: none;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 1001;
+  -moz-opacity: 0.8;
+  opacity: .80;
+  filter: alpha(opacity=80);
+}
+.white_content {
+  display: none;
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
+  padding: 16px;
+  border: 16px solid orange;
+  background-color: white;
+  z-index: 1002;
+  overflow: auto;
+}
+</style>

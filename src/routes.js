@@ -1,22 +1,20 @@
 import VueRouter from 'vue-router';
+import Vue from 'vue';
+
+Vue.use(VueRouter)
 
 
-let routes = [
-
-	{
-
-		path: '/',
-
-		component: require('./component/signup.vue')
+import Home   from './screens/Home'
+import Lexicon   from './screens/Lexicon'
 
 
-	}
+export default new VueRouter({
+  mode: 'history',
+  scrollBehavior: () => ({ y: 0 }),
+  routes: [
 
-];
-
-
-export default new VueRouter ({
-
-	  saveScrollPosition: true,
- 	  history: true
-});
+    { path: '/home', component: Home },
+    { path: '/lexicon', component: Lexicon },
+    { path: '/', redirect: '/home' }
+  ]
+})

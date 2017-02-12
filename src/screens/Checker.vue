@@ -34,7 +34,6 @@ export default {
     return{
      checkReviews: [],
      questionAnswers: [],
-     showRow: [],
      numOfReviews: 0,
      previousChecksStack: [],
      checkerSubmit: {checkerIds: [], reviewsResult: [], reviewsResultId: []},
@@ -46,13 +45,7 @@ export default {
   methods: {
       eventChecker: function(checkerReviews) {
         this.numOfReviews = checkerReviews.length;
-        this.checkReviews = checkerReviews;
-        this.showRow = [];
-        var show = '';
-        for (var i = 0; i < checkerReviews.length; i++) {
-             this.showRow.push({show: true});
-        }
-        
+        this.checkReviews = checkerReviews;        
         console.log('Event from checker component emitted', checkerReviews);
       },
 
@@ -74,7 +67,7 @@ export default {
           this.previousChecksStack.push(this.checkReviews[index]);
           this.checkReviews.splice(index, 1);
           this.numOfReviews -= 1;
-          this.showRow[index].show=false;
+          
       },
 
       getPrevious: function(){

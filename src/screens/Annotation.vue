@@ -50,7 +50,6 @@ export default {
         this.numOfReviews = annotationReviews.length;
         this.annotationReviews = annotationReviews;
   
-        
         console.log('Event from annotation component emitted', annotationReviews);
       },
 

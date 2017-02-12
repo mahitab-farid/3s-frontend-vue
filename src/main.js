@@ -7,6 +7,7 @@
 // Vue1.http.options.emulateHTTP = true;
 
 import Vue    from 'vue'
+import VueRouter from 'vue-router'
 import App    from './screens/App'
 import Annotation   from './screens/Annotation'
 import Checker   from './screens/Checker'
@@ -15,38 +16,66 @@ import Lexicon   from './screens/Lexicon'
 import Signup from './components/signup'
 import AnnotationComponent from './components/AnnotationComponent'
 import CheckCookiesComponent from './components/CheckCookiesComponent'
-import StatisticsDashboardComponent from './components/StatisticsDashboardComponent'
+import StatisticsDashboard from './screens/StatisticsDashboard'
+import ApprovedNewUsers from './screens/ApprovedNewUsers'
 import CheckerComponent from './components/CheckerComponent'
 import Questionanswers from './components/QuestionAnswers'
+import Routes from './routes.js'
 
-
-
-
-var VueRouter = require('vue-router');
 Vue.use(VueRouter);
 Vue.use(axios);
 
 
-var router = new VueRouter({
-  saveScrollPosition: true,
-  history: true
-});
-
+// 3. Create the router instance and pass the `routes` option
+// You can pass in additional options here, but let's
+// keep it simple for now.
 /* eslint-disable no-new */
 if (document.querySelector('#app')){
-new Vue({
-  el: '#app',
-  template: '<App/>',
-  components: { App, CheckCookiesComponent},
-   http: {
-    root: '/root',
-    headers: {
-      'access-control-allow-origin,content-type': '*',
-      'Content-Type': 'application/x-www-form-urlencoded'
+  new Vue({
+    el: '#app',
+    template: '<App/>',
+    components: { App, CheckCookiesComponent},
+     http: {
+      root: '/root',
+      headers: {
+        'access-control-allow-origin,content-type': '*',
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
     }
-  }
-});
+  });
 }
+
+if (document.querySelector('#statisticsDashboard')){
+  new Vue({
+    el: '#statisticsDashboard',
+    template: '<StatisticsDashboard/>',
+    components: {StatisticsDashboard},
+     http: {
+      root: '/root',
+      headers: {
+        'access-control-allow-origin,content-type': '*',
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    }
+  });
+}
+
+
+if (document.querySelector('#approvedNewUsers')){
+  new Vue({
+    el: '#approvedNewUsers',
+    template: '<ApprovedNewUsers/>',
+    components: {ApprovedNewUsers},
+     http: {
+      root: '/root',
+      headers: {
+        'access-control-allow-origin,content-type': '*',
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    }
+  });
+}
+
 
 if (document.querySelector('#annotation')) {
 new Vue({
@@ -68,7 +97,7 @@ if (document.querySelector('#checker')){
 new Vue({
   el: '#checker',
   template: '<Checker/>',
-  components: { Checker, Questionanswers , CheckerComponent, StatisticsDashboardComponent},
+  components: { Checker, Questionanswers , CheckerComponent},
    http: {
     root: '/root',
     headers: {
@@ -81,19 +110,19 @@ new Vue({
 }
 
 if (document.querySelector('#home')){
-new Vue({
-  el: '#home',
-  template: '<Home/>',
-  components: {Home, StatisticsDashboardComponent, Lexicon},
-   http: {
-    root: '/root',
-    headers: {
-      'access-control-allow-origin,content-type': '*',
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
-  }
+    new Vue({
+      el: '#home',
+      template: '<Home/>',
+      components: {Home, Lexicon},
+       http: {
+        root: '/root',
+        headers: {
+          'access-control-allow-origin,content-type': '*',
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      }
 
-});
+    });
 }
 
 if (document.querySelector('#lexicon')){
@@ -112,11 +141,3 @@ new Vue({
 });
 }
 
-router.map({
-  '/sign': {
-    component: Signup
-  }
-});
-
-
-export default router

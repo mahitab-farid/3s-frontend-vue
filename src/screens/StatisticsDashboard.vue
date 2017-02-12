@@ -1,6 +1,6 @@
-<template>
+F<template>
   
-  <div id="statisticsDashboardComponent">
+  <div id="statisticsDashboard">
       <H3 class="center">USERS STATISTICS</H3>
     
     <table style="width:100%">
@@ -58,12 +58,12 @@
 
 <script>
 
-import AnnotationUserStatisticsComponent from './AnnotationUserStatisticsComponent.vue';
-import ChecksUserStatisticsComponent from './ChecksUserStatisticsComponent.vue';
-import LexiconsUserStatisticsComponent from './LexiconsUserStatisticsComponent.vue';
+import AnnotationUserStatisticsComponent from '../components/AnnotationUserStatisticsComponent.vue';
+import ChecksUserStatisticsComponent from '../components/ChecksUserStatisticsComponent.vue';
+import LexiconsUserStatisticsComponent from '../components/LexiconsUserStatisticsComponent.vue';
 
 export default {
-  name: 'statisticsDashboardComponent',
+  name: 'statisticsDashboard',
   components: {
     AnnotationUserStatisticsComponent, ChecksUserStatisticsComponent, LexiconsUserStatisticsComponent
   },

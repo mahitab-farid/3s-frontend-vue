@@ -54,10 +54,7 @@ export default {
   methods: {
     redirection: function(){
 
-      window.sessionStorage.setItem('user_id', this.currentUser.id);
-      window.sessionStorage.setItem('accessToken', this.currentUser.accessToken);
-      window.sessionStorage.setItem('userName', this.currentUser.userName);
-      window.location.replace("../../home.html");
+      window.location.replace("../../index.html");
 
     } ,
     signup: function(){
@@ -79,11 +76,7 @@ export default {
         })
         .then(function (response) {
           console.log('[.] Success : ', response);
-
-          that.currentUser.id = response.data.user_id;
-          that.currentUser.accessToken = response.data.access_token;
-          that.currentUser.userName = response.data.user_name;
-
+          alert(response.data);
           that.redirection();
         })
         .catch(function (error) {
