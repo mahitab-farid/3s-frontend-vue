@@ -8,7 +8,7 @@
           <p>phone: {{unapprovedUser.phone}}</p>
          </div> 
           <div  style="text-align:center;margin-top:-60px">   
-              <a href="javascript:void(0)" @click="showTab()">Roles</a>
+              <a href="javascript:void(0)" @click="showTab(unapprovedUser.id)">Roles</a>
           </div>
           <button id="answersbutton" style="float: right;" @click="approvedUser(unapprovedUser.id, index)">Approved</button>
           
@@ -17,7 +17,7 @@
       </div>
 
       <div id="light" class="white_content"><h3>Roles</h3>
-
+        <assignedRolesComponent :user_id="currentUserId"></assignedRolesComponent>
         <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">Close</a>
       </div>
       <div id="fade" class="black_overlay"></div>
@@ -31,18 +31,20 @@
 <script>
 
 import UnapprovedUsersComponent from '../components/UnapprovedUsersComponent'
+import AssignedRolesComponent from '../components/AssignedRolesComponent'
 
 
 export default {
   name: 'approvedNewUsers',
   components: {
-    UnapprovedUsersComponent
+    UnapprovedUsersComponent, AssignedRolesComponent
   },
  
   data(){
     return{
       unapprovedUsers: [],
-      showRow: []
+      showRow: [],
+      currentUserId: ''
     }
   },
 
@@ -82,23 +84,8 @@ export default {
         });
       },
 
-     tabWrite: function(evt, cityName) {
-      
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-     
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-
-        document.getElementById(cityName).style.display = "block";
-       // evt.currentTarget.className += " active";
-    },
-    showTab: function(){
+    showTab: function(user_id){
+      this.currentUserId = user_id;
       document.getElementById('light').style.display='block';
       document.getElementById('fade').style.display='block';
     } 

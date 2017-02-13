@@ -29,6 +29,7 @@ export default {
 
   computed:{
     computedUserLexiconsStats: function(){
+      if(user_id != '')
         this.getUserLexiconsStatistics();
     }
   },

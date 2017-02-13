@@ -29,6 +29,7 @@ export default {
 
   computed:{
     computedUserchecksStats: function(){
+      if(user_id != '')
         this.getUserChecksStatistics();
     }
   },
