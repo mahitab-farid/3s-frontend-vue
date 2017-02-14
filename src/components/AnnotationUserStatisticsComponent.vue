@@ -29,7 +29,7 @@ export default {
 
   computed:{
     computedUserAnnotationStats: function(){
-      if(user_id != '')
+      if(this.user_id != '')
         this.getUserAnnotationStatistics();
     }
   },

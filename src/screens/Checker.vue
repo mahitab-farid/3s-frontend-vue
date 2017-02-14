@@ -1,5 +1,7 @@
 <template>
   <div id="checker">
+    <logoutComponent></logoutComponent>
+    <menuComponent></menuComponent>
     <button id="answersbutton" class="btn btn-primary" @click="getPrevious()">Previous</button>
     <div v-for="(checkReview, index) in checkReviews">
         <div class="reviewtext">
@@ -23,11 +25,13 @@
 
 import CheckerComponent from '../components/CheckerComponent'
 import QuestionAnswers from '../components/QuestionAnswers'
+import MenuComponent from '../components/MenuComponent'
+import LogoutComponent from '../components/LogoutComponent'
 
 export default {
   name: 'checker',
   components: {
-    CheckerComponent, QuestionAnswers
+    CheckerComponent, QuestionAnswers, MenuComponent, LogoutComponent
   },
  
   data(){
@@ -98,7 +102,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   //text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+//  margin-top: 60px;
 
 
 }

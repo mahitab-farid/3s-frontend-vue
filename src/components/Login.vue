@@ -57,7 +57,8 @@ export default {
       currentUser: {
           id: '',
           accessToken: '',
-          userName: '' 
+          userName: '',
+          roles: []
       }
 
     }
@@ -73,6 +74,7 @@ export default {
                   window.sessionStorage.setItem('user_id', this.currentUser.id);
                   window.sessionStorage.setItem('accessToken', this.currentUser.accessToken);
                   window.sessionStorage.setItem('userName', this.currentUser.userName);
+                  window.sessionStorage.setItem('roles', this.currentUser.roles);
                   window.location.replace("../../home.html");
             } , 
 
@@ -97,11 +99,13 @@ export default {
                       that.currentUser.id = response.data.user_id;
                       that.currentUser.accessToken = response.data.access_token;
                       that.currentUser.userName = response.data.user_name;
+                      that.currentUser.roles = response.data.roles;
 
                       if($('#check').is(":checked")){
                         that.setCookie("userId", that.currentUser.id, 30);
                         that.setCookie("accessToken", that.currentUser.accessToken, 30);
                         that.setCookie("userName", that.currentUser.userName, 30);
+                        that.setCookie("roles", that.currentUser.roles, 30);
                       }
 
                       that.redirection();

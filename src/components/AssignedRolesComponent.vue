@@ -1,9 +1,9 @@
 <template>
   <div class="assignedRolesComponent">
     <div v-for="(role,index) in roles">
-
         <input type="checkbox" name="role" :id="index" :value="role.id">{{role.role_name}}<br>
     </div>
+     <a href="javascript:void(0)" @click="resetCheckBoxes()" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">Close</a>
     <button @click="assignedRoles()">Assigned</button>
   </div>
 </template>
@@ -76,13 +76,17 @@ export default {
         .then(function (response) {
             console.log('[.] Success : ', response);
             alert(response.data);
-            for(var i = 0; i < that.roles.length; i++)
-               document.getElementById(i).checked = false;
+
         })
         .catch(function (error) {
           console.log('[.] Fail : ',error.response.data);
           alert(error.response.data);
         });
+    },
+    resetCheckBoxes: function(){
+        for(var i = 0; i< this.roles.length; i++){
+            document.getElementById(i).checked = false;
+        }
     }
   }
 }

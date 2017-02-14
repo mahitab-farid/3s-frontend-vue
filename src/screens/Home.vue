@@ -1,5 +1,6 @@
 <template>
   <div id="home">
+    <logoutComponent></logoutComponent>
     <menuComponent></menuComponent>
     
   </div>
@@ -8,11 +9,12 @@
 <script>
 
 import MenuComponent from '../components/MenuComponent'
+import LogoutComponent from '../components/LogoutComponent'
 
 export default {
   name: 'home',
   components: {
-     MenuComponent
+     MenuComponent, LogoutComponent
   },
  
   data(){

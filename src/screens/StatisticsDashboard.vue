@@ -1,6 +1,8 @@
 F<template>
   
   <div id="statisticsDashboard">
+      <logoutComponent></logoutComponent>
+      <menuComponent></menuComponent>
       <H3 class="center">USERS STATISTICS</H3>
     
     <table style="width:100%">
@@ -10,8 +12,8 @@ F<template>
         <th>Number of annotation reviews</th>
         <th>Number of checker reviews</th>
         <th>Number of lexicons reviews</th>
-        <th>Avg annotation/min</th>
-        <th>Avg checking/min</th>
+        <th>Avg annotations/min</th>
+        <th>Avg checks/min</th>
         <th>Avg lexicons/min</th>
       </tr>
       </thead>
@@ -61,11 +63,13 @@ F<template>
 import AnnotationUserStatisticsComponent from '../components/AnnotationUserStatisticsComponent.vue';
 import ChecksUserStatisticsComponent from '../components/ChecksUserStatisticsComponent.vue';
 import LexiconsUserStatisticsComponent from '../components/LexiconsUserStatisticsComponent.vue';
+import MenuComponent from '../components/MenuComponent'
+import LogoutComponent from '../components/LogoutComponent'
 
 export default {
   name: 'statisticsDashboard',
   components: {
-    AnnotationUserStatisticsComponent, ChecksUserStatisticsComponent, LexiconsUserStatisticsComponent
+    AnnotationUserStatisticsComponent, ChecksUserStatisticsComponent, LexiconsUserStatisticsComponent, MenuComponent, LogoutComponent
   },
  
   data(){

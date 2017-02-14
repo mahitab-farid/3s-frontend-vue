@@ -1,7 +1,7 @@
 <template>
   <div class="checkerComponent">
     {{computedChecksSubmit}}
-    <div class="center">
+    <div style="margin-left:840px;margin-top:300px">
       <button @click="getCheckReviews()" id="NextReviews">Get Next</button>
     </div>
   </div>

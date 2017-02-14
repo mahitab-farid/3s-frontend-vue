@@ -1,5 +1,7 @@
 <template>
   <div id="lexicon">
+    <logoutComponent></logoutComponent>
+    <menuComponent></menuComponent>
     <button id="answersbutton" style="float: left;" class="btn btn-primary" @click="getPrevious()">Previous</button>
     <div v-for="(lexicon, index) in lexicons">
       <div :id="'wordEdit'+index" class="lexiconWord" >
@@ -24,11 +26,13 @@
 
 import LexiconsComponent from '../components/LexiconsComponent'
 import LexiconAnswersTypesComponent from '../components/LexiconAnswersTypesComponent'
+import MenuComponent from '../components/MenuComponent'
+import LogoutComponent from '../components/LogoutComponent'
 
 export default {
   name: 'lexicon',
   components: {
-    LexiconsComponent, LexiconAnswersTypesComponent
+    LexiconsComponent, LexiconAnswersTypesComponent, MenuComponent, LogoutComponent
   },
  
   data(){
@@ -98,10 +102,10 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+ // text-align: center;
   color: #2c3e50;
-  margin-top: 45px;
-  padding-top: 12px;
+//  margin-top: 45px;
+ // padding-top: 12px;
 
 
 }

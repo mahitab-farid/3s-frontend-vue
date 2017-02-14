@@ -43,6 +43,31 @@ module.exports = merge(baseWebpackConfig, {
       template: 'home.html',
       inject: true
     }),
+    new HtmlWebpackPlugin({
+      filename: 'annotation.html',
+      template: 'annotation.html',
+      inject: true
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'checker.html',
+      template: 'checker.html',
+      inject: true
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'lexicon.html',
+      template: 'lexicon.html',
+      inject: true
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'approvedNewUsers.html',
+      template: 'approvedNewUsers.html',
+      inject: true
+    }),
+   new HtmlWebpackPlugin({
+      filename: 'statisticsDashboard.html',
+      template: 'statisticsDashboard.html',
+      inject: true
+    }),
     new FriendlyErrors()
   ]
 })

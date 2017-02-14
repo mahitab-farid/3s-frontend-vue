@@ -4,11 +4,15 @@
     <div id="myNav" class="overlay">
       <a href="javascript:void(0)" class="closebtn" @click="closeNav()">&times;</a>
       <div class="overlay-content">
-        <a v-link="{ path: '/lexicon' }">Home</a>
-        <a href="#" >Reviews<span class="arrow"></span></a>
-        <a href="#">Lexicons</a>
-        <a href="#">Admin</a>
-        <a href="#">Users</a>
+        
+        <a href="../home.html">Home</a>
+        <a href="#" >Profile</a>
+        <a href="../annotation.html" v-if="admin||annotator">Annotation</a>
+        <a href="../checker.html" v-if="admin||checker">Checking reviews</a>
+        <a href="../lexicon.html">Lexicons</a>
+        <a href="../statisticsDashboard.html" v-if="admin">Users Statistics</a>
+        <a href="../approvedNewUsers.html" v-if="admin">Users Approval</a>
+        <a href="#">Settings</a>
  
         
 
@@ -26,8 +30,31 @@ export default {
   components: {},
   data () {
     return {
-      
+        roles: [],
+        admin: false,
+        annotator: false,
+        checker: false
     }
+  },
+
+  mounted: function(){
+      this.roles = window.sessionStorage.getItem('roles');
+      var rolesArray = this.roles.substring(1, this.roles.length-1).split(',');
+        
+      for (var i = 0 ; i < rolesArray.length; i++){
+          var role = rolesArray[i].substring(1, rolesArray[i].length-1);
+          
+          if(role == 'Admin'){
+              this.admin = true;
+          }
+          else if (role == 'Annotator'){
+                this.annotator = true;
+          }
+          else if (role == 'Checker'){
+                this.checker = true;
+          }
+
+      }
   },
 
   methods: {

@@ -2,12 +2,10 @@
   <div class="lexiconComponent">
         {{computedLexiconsSubmit}}
     <div class="center">
-
-      <button class="btn btn-info" @click="getLexicons()" id="lexicon">Get Next</button>
+      <button class="btn btn-info" style="margin-top:300px" @click="getLexicons()" id="lexicon">Get Next</button>
       
     </div>
        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
   </div>
 </template>
 

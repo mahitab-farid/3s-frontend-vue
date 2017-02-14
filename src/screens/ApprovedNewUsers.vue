@@ -1,6 +1,7 @@
 <template>
   <div  id="approvedNewUsers">
-       
+      <logoutComponent></logoutComponent>
+      <menuComponent></menuComponent>
       <div v-for="(unapprovedUser, index) in unapprovedUsers" v-show="showRow[index].show">
          <div class="Pageright"> 
           <p>user name: {{unapprovedUser.user_name}}</p>  
@@ -8,7 +9,7 @@
           <p>phone: {{unapprovedUser.phone}}</p>
          </div> 
           <div  style="text-align:center;margin-top:-60px">   
-              <a href="javascript:void(0)" @click="showTab(unapprovedUser.id)">Roles</a>
+              <a href="javascript:void(0)" @click="showTab(unapprovedUser.id, unapprovedUser.user_name)">Roles</a>
           </div>
           <button id="answersbutton" style="float: right;" @click="approvedUser(unapprovedUser.id, index)">Approved</button>
           
@@ -16,9 +17,9 @@
             
       </div>
 
-      <div id="light" class="white_content"><h3>Roles</h3>
+      <div id="light" class="white_content"><h3>{{currentUserName}}'s Roles</h3>
         <assignedRolesComponent :user_id="currentUserId"></assignedRolesComponent>
-        <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">Close</a>
+       
       </div>
       <div id="fade" class="black_overlay"></div>
   
@@ -32,19 +33,21 @@
 
 import UnapprovedUsersComponent from '../components/UnapprovedUsersComponent'
 import AssignedRolesComponent from '../components/AssignedRolesComponent'
-
+import MenuComponent from '../components/MenuComponent'
+import LogoutComponent from '../components/LogoutComponent'
 
 export default {
   name: 'approvedNewUsers',
   components: {
-    UnapprovedUsersComponent, AssignedRolesComponent
+    UnapprovedUsersComponent, AssignedRolesComponent, MenuComponent, LogoutComponent
   },
  
   data(){
     return{
       unapprovedUsers: [],
       showRow: [],
-      currentUserId: ''
+      currentUserId: '',
+      currentUserName:''
     }
   },
 
@@ -84,8 +87,9 @@ export default {
         });
       },
 
-    showTab: function(user_id){
+    showTab: function(user_id, user_name){
       this.currentUserId = user_id;
+      this.currentUserName = user_name;
       document.getElementById('light').style.display='block';
       document.getElementById('fade').style.display='block';
     } 
@@ -102,8 +106,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   //text-align: center;
   color: #2c3e50;
-  margin-top: 45px;
-  padding-top: 12px;
+ // margin-top: 45px;
+ // padding-top: 12px;
 
 
 }
