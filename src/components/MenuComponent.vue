@@ -9,7 +9,7 @@
         <a href="#" >Profile</a>
         <a href="../annotation.html" v-if="admin||annotator">Annotation</a>
         <a href="../checker.html" v-if="admin||checker">Checking reviews</a>
-        <a href="../lexicon.html">Lexicons</a>
+        <a href="../lexicon.html" v-if="admin||lexicon_checker">Lexicons</a>
         <a href="../statisticsDashboard.html" v-if="admin">Users Statistics</a>
         <a href="../approvedNewUsers.html" v-if="admin">Users Approval</a>
         <a href="#">Settings</a>
@@ -33,7 +33,8 @@ export default {
         roles: [],
         admin: false,
         annotator: false,
-        checker: false
+        checker: false,
+        lexicon_checker: false;
     }
   },
 
@@ -52,6 +53,9 @@ export default {
           }
           else if (role == 'Checker'){
                 this.checker = true;
+          }
+          else if (role == 'Lexicon_checker'){
+                this.lexicon_checker = true;
           }
 
       }
