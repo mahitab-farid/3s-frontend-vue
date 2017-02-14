@@ -4,7 +4,9 @@
 
         <input type="checkbox" name="role" :id="index" :value="role.id">{{role.role_name}}<br>
     </div>
-    <button @click="assignedRoles()">Assigned</button>
+    <div id="assignedbutton">
+    <button id="assigned" @click="assignedRoles()" class="btn btn-primary">Assigned</button>
+    </div>
   </div>
 </template>
 
@@ -108,6 +110,20 @@ a {
   color: #42b983;
 }
 
+#assigned{
 
+    padding: 8px;
+    margin: 9px auto;
+    height: 39px; 
+    width: 129px; 
+    position:relative;
+    top:50%; 
+    left:-1%;
+    font-size: 19px;
+    text-align: center;
+}
+#assignedbutton{
 
+    text-align:center;
+}
 </style>
