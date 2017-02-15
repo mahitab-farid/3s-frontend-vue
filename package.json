@@ -1,9 +1,18 @@
 {
-  "name": "nlp-data-sentiment-vue",
+  "name": "annotation-system",
   "version": "1.0.0",
   "description": "A Vue.js Front-End for NLP annotation",
-  "author": "Mahitab Farid <mahitabfarid@smartera3s.com>",
+  "authors": ["Mahitab Frid <mahitabfarid@smartera3s.com>","Mohamed Nabil <mohamednabil00000@gmail.com>"],
   "private": true,
+  "main": "dist/vue-resource.common.js",
+  "jsnext:main": "dist/vue-resource.es2015.js",
+   "homepage": "https://github.com/vuejs/vue-resource#readme",
+    "keywords": [
+    "vue",
+    "xhr",
+    "http",
+    "ajax"
+  ],
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
@@ -12,8 +21,20 @@
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
+  "bugs": {
+    "url": "https://github.com/vuejs/vue-resource/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vuejs/vue-resource.git"
+  },
   "dependencies": {
-    "vue": "^2.1.0"
+    "vue": "^2.1.0",
+    "axios": "^0.15.3",
+    "vue-router": "^2.2.0",
+    "bootstrap": "^4.0.0-alpha.6",
+    "bootstrap-loader": "^2.0.0-beta.20",
+    "vueboot": "^0.4.5"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",
@@ -75,7 +96,8 @@
     "webpack": "^1.13.2",
     "webpack-dev-middleware": "^1.8.3",
     "webpack-hot-middleware": "^2.12.2",
-    "webpack-merge": "^0.14.1"
+    "webpack-merge": "^0.14.1",
+    "vue": "^2.1.10"
   },
   "engines": {
     "node": ">= 4.0.0",

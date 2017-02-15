@@ -21,6 +21,13 @@ module.exports = merge(baseWebpackConfig, {
     new webpack.DefinePlugin({
       'process.env': config.dev.env
     }),
+
+     new webpack.ProvidePlugin({
+      $: 'jquery',
+      jquery: 'jquery',
+      'window.jQuery': 'jquery',
+      jQuery: 'jquery'
+     }),
     // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
@@ -29,6 +36,41 @@ module.exports = merge(baseWebpackConfig, {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
+      inject: true
+    }),
+     new HtmlWebpackPlugin({
+      filename: 'home.html',
+      template: 'home.html',
+      inject: true
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'annotation.html',
+      template: 'annotation.html',
+      inject: true
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'checker.html',
+      template: 'checker.html',
+      inject: true
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'lexicon.html',
+      template: 'lexicon.html',
+      inject: true
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'approvedNewUsers.html',
+      template: 'approvedNewUsers.html',
+      inject: true
+    }),
+   new HtmlWebpackPlugin({
+      filename: 'statisticsDashboard.html',
+      template: 'statisticsDashboard.html',
+      inject: true
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'adminHome.html',
+      template: 'adminHome.html',
       inject: true
     }),
     new FriendlyErrors()
