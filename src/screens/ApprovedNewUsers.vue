@@ -1,31 +1,50 @@
 <template>
   <div  id="approvedNewUsers">
-      <logoutComponent></logoutComponent>
-      <menuComponent></menuComponent>
-      <div v-for="(unapprovedUser, index) in unapprovedUsers" v-show="showRow[index].show">
-         <div class="Pageright"> 
-          <p>user name: {{unapprovedUser.user_name}}</p>  
-          <p>email: {{unapprovedUser.email}}</p> 
-          <p>phone: {{unapprovedUser.phone}}</p>
-         </div> 
-          <div  style="text-align:center;margin-top:-60px">   
-              <a href="javascript:void(0)" @click="showTab(unapprovedUser.id, unapprovedUser.user_name)">Roles</a>
-          </div>
-          <button id="answersbutton" style="float: right;" @click="approvedUser(unapprovedUser.id, index)">Approved</button>
-          
-          <br></br>
-            
-      </div>
 
-      <div id="light" class="white_content"><h3>{{currentUserName}}'s Roles</h3>
-        <assignedRolesComponent :user_id="currentUserId"></assignedRolesComponent>
+    <logoutComponent></logoutComponent>
+    <menuComponent></menuComponent>
+      
+    <div class="page-header">
+     
+    </div>
+    <div class="container">
+
+      <table class="table table-striped"  width="100%">
+        <tbody>
+          <tr class="info">
+            <th>image</th>
+            <th>Name</th>
+            <th>email</th>            
+            <th>phone</th>
+            <th>Role</th>
+            <th>approved</th>
+          </tr>
+           
+          <tr v-for="(unapprovedUser, index) in unapprovedUsers" v-show="showRow[index].show">
+            <td><img src="../assets/user.png" width="60px"></td>
+            <td>{{unapprovedUser.user_name}}</td>
+            <td>{{unapprovedUser.email}}</td>
+            <td>{{unapprovedUser.phone}}</td>
+            <td><a href="javascript:void(0)" @click="showTab(unapprovedUser.id, unapprovedUser.user_name)">Roles</a></td>
+            <td><button class="btn btn-primary" @click="approvedUser(unapprovedUser.id, index)">Approved</button> </td>
        
+          </tr>
+        </tbody>
+      </table>
+
+
+      <div id="light" class="white_content"><h3>{{currentUserName}}'s Assigned Roles</h3>
+
+    
+      <h3 style="text-align:center">Roles</h3>
+        <assignedRolesComponent :user_id="currentUserId"></assignedRolesComponent>
       </div>
       <div id="fade" class="black_overlay"></div>
   
       <unapprovedUsersComponent v-on:event_unapprovedUsers="eventUnapprovedUsers"></unapprovedUsersComponent>
       
-     
+    </div>
+
   </div>
 </template>
 
@@ -112,6 +131,7 @@ export default {
 
 }
 
+
 .Wrapper {
     text-align: center;
 }
@@ -134,13 +154,16 @@ export default {
 }
 
 .Pageright{
-  margin-left:100px;
+ 
+ 
+
 }
 
 #answersbutton{
-margin: 2px;
-margin-top : -30px;
-margin-right:100px;
+  margin: 2px;
+  margin-top: -68px;
+  margin-right: 100px;
+  height: 44px;
 }
 
 
@@ -201,9 +224,30 @@ ul.tab li a:focus, .active {background-color: #ccc;}
   width: 50%;
   height: 50%;
   padding: 16px;
-  border: 16px solid orange;
+  border: 8px solid red;
   background-color: white;
   z-index: 1002;
   overflow: auto;
 }
+#closelink{
+  padding: 5px;
+  font-size: 19px;
+}
+
+#linksdiv{
+  text-align:center;
+  margin-top:-60px ;
+  font-size: 21px;
+  margin-top: -80px;
+}
+.table{
+      margin: -13px;
+      font-size: 18px
+}
+.page-header{
+ margin: -77px 0 20px;
+ background-color: #D3D3D3;
+ height: 107px;
+}
+
 </style>

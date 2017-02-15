@@ -12,6 +12,7 @@ import App    from './screens/App'
 import Annotation   from './screens/Annotation'
 import Checker   from './screens/Checker'
 import Home   from './screens/Home'
+import AdminHome   from './screens/AdminHome'
 import Lexicon   from './screens/Lexicon'
 import Signup from './components/signup'
 import AnnotationComponent from './components/AnnotationComponent'
@@ -130,6 +131,22 @@ new Vue({
   el: '#lexicon',
   template: '<Lexicon/>',
   components: {Lexicon},
+   http: {
+    root: '/root',
+    headers: {
+      'access-control-allow-origin,content-type': '*',
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  }
+
+});
+}
+
+if (document.querySelector('#adminHome')){
+new Vue({
+  el: '#adminHome',
+  template: '<AdminHome/>',
+  components: {AdminHome},
    http: {
     root: '/root',
     headers: {

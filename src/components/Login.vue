@@ -75,6 +75,20 @@ export default {
                   window.sessionStorage.setItem('accessToken', this.currentUser.accessToken);
                   window.sessionStorage.setItem('userName', this.currentUser.userName);
                   window.sessionStorage.setItem('roles', this.currentUser.roles);
+
+                  var rolesArray = this.currentUser.roles.substring(1, this.currentUser.roles.length-1).split(',');
+        
+                  for (var i = 0 ; i < rolesArray.length; i++){
+                      var role = rolesArray[i].substring(1, rolesArray[i].length-1);
+                      
+                      if(role == 'Admin'){
+                          this.admin = true;
+                          window.location.replace("../../adminHome.html");
+                          return;
+                      }
+
+                  }
+
                   window.location.replace("../../home.html");
             } , 
 

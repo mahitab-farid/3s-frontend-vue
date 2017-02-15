@@ -1,10 +1,16 @@
 <template>
   <div class="assignedRolesComponent">
+   
+    <a id="closelink" class="topcorner" href="javascript:void(0)" @click="resetCheckBoxes()" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'" style="float:right;">X</a>
+     
     <div v-for="(role,index) in roles">
         <input type="checkbox" name="role" :id="index" :value="role.id">{{role.role_name}}<br>
     </div>
-     <a href="javascript:void(0)" @click="resetCheckBoxes()" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">Close</a>
-    <button @click="assignedRoles()">Assigned</button>
+
+    <div id="assignedbutton">
+    <button id="assigned" @click="assignedRoles()" class="btn btn-primary">Assigned</button>
+    </div>
+
   </div>
 </template>
 
@@ -112,6 +118,30 @@ a {
   color: #42b983;
 }
 
+ .topcorner{
+   position:absolute;
+   top:0;
+   right:0;
+  }
 
+#assigned{
 
+    padding: 8px;
+    margin: 9px auto;
+    height: 39px; 
+    width: 129px; 
+    position:relative;
+    top:50%; 
+    left:-1%;
+    font-size: 19px;
+    text-align: center;
+}
+#assignedbutton{
+
+    text-align:center;
+}
+#closelink{
+  padding: 5px;
+  font-size: 19px;
+}
 </style>

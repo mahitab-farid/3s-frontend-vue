@@ -5,7 +5,8 @@
       <a href="javascript:void(0)" class="closebtn" @click="closeNav()">&times;</a>
       <div class="overlay-content">
         
-        <a href="../home.html">Home</a>
+        <a href="../home.html" v-if="!admin">Home</a>
+        <a href="../adminHome.html" v-if="admin">Home</a>
         <a href="#" >Profile</a>
         <a href="../annotation.html" v-if="admin||annotator">Annotation</a>
         <a href="../checker.html" v-if="admin||checker">Checking reviews</a>
@@ -34,7 +35,7 @@ export default {
         admin: false,
         annotator: false,
         checker: false,
-        lexicon_checker: false;
+        lexicon_checker: false
     }
   },
 

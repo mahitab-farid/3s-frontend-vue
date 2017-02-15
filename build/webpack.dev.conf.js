@@ -68,6 +68,11 @@ module.exports = merge(baseWebpackConfig, {
       template: 'statisticsDashboard.html',
       inject: true
     }),
+    new HtmlWebpackPlugin({
+      filename: 'adminHome.html',
+      template: 'adminHome.html',
+      inject: true
+    }),
     new FriendlyErrors()
   ]
 })

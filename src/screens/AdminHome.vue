@@ -1,8 +1,8 @@
 <template>
-  <div id="home">
+  <div id="adminHome">
     <logoutComponent></logoutComponent>
     <menuComponent></menuComponent> 
-      "home"
+        "admin home"
   </div>
 </template>
 
@@ -12,7 +12,7 @@ import MenuComponent from '../components/MenuComponent'
 import LogoutComponent from '../components/LogoutComponent'
 
 export default {
-  name: 'home',
+  name: 'adminHome',
   components: {
      MenuComponent, LogoutComponent
   },
