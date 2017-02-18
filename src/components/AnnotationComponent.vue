@@ -1,7 +1,7 @@
 <template>
   <div class="annotationComponent">
     {{computedAnnotationSubmit}}
-    <div  style="margin-left:840px;margin-top:300px">
+    <div   style="margin-left:840px;margin-top:300px">
 
       <button class="btn btn-info" @click="getAnnotationReviews()" id="annotation">Get Next</button>
       

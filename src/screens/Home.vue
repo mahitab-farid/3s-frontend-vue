@@ -2,7 +2,7 @@
   <div id="home">
     <logoutComponent></logoutComponent>
     <menuComponent></menuComponent> 
-      "home"
+      <h1><center><font color="red">WELCOME IN NLP-NEW-SYSTEM</font></center></h1>
   </div>
 </template>
 
@@ -19,7 +19,7 @@ export default {
  
   data(){
     return{
-     
+      
     }
   },
 
