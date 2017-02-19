@@ -5,20 +5,21 @@
     <menuComponent></menuComponent>
     <button id="answersbutton" class="btn btn-primary" @click="getPrevious()">Previous</button>
     <div v-for="(annotationReview, index) in annotationReviews">
-      <div id="annotate">
-        {{annotationReview.review_text}}
-      </div>
-      <div class="QuestionAnswers">
-        <div class="centered"> 
-            <h1>{{currentQuestion}}</h1>
-              <ul v-for="questionAnswer in questionAnswers">
-                <li>
-                  <button @click="submitRow(index, annotationReview.id, questionAnswer.answer, questionAnswer.id)" class="btn btn-primary"
-                    v-bind:style="{ backgroundColor: questionAnswer.color}">{{questionAnswer.answer}} </button>
-                </li>
-              </ul> 
+      <div id="wrap">
+        <div id="annotate">
+          {{annotationReview.review_text}}
         </div>
-      </div>
+        <div class="QuestionAnswers">
+              <h1>{{currentQuestion}}</h1>
+              <ul v-for="questionAnswer in questionAnswers">
+                  <li>
+                    <button @click="submitRow(index, annotationReview.id, questionAnswer.answer, questionAnswer.id)" class="btn btn-primary"
+                      v-bind:style="{ backgroundColor: questionAnswer.color}">{{questionAnswer.answer}} </button>
+                  </li>
+              </ul> 
+
+        </div>
+        </div>
     </div>  
       <annotationComponent v-on:event_annotation="eventAnnotation" :annotationSubmit="annotationSubmit" :numOfReviews="numOfReviews"></annotationComponent>
       
@@ -103,7 +104,7 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 #annotation {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -117,25 +118,39 @@ export default {
 }
 
 .annotationWrapper {
-    text-align: center;
+  text-align: center;
 }
 
 .center {
-    text-align: center;
+  text-align: center;
 }
 
 #annotate{
   height:200px;
-  /*width:1170px;*/
   overflow:scroll;
   background-color:#F6F6F6;
   text-align: center;
   width:1600px;
-   margin:20px auto;
-   font-size: 20px
+  margin:20px auto;
+  font-size: 20px;
+  padding-top: 22px;
+  margin-left: 69px;
+  float:left;
 }
 
 #answersbutton{
-margin: 2px;
+  margin: 2px;
+}
+#wrapp {
+  overflow: hidden; 
+}
+
+.QuestionAnswers {
+  padding-top: 39px;
+  padding-left: 75px;
+  overflow: hidden;
+}
+ul {
+  list-style-type: none;
 }
 </style>
