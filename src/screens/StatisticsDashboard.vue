@@ -2,7 +2,6 @@ F<template>
   
   <div id="statisticsDashboard">
       <headerComponent></headerComponent>
-      <menuComponent></menuComponent>
       <H3 class="center">USERS STATISTICS</H3>
     
     <table style="width:100%">

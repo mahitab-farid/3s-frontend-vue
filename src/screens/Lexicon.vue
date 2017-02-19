@@ -1,7 +1,6 @@
 <template>
   <div id="lexicon">
     <headerComponent></headerComponent>
-    <menuComponent></menuComponent>
     <button id="answersbutton" style="float: left;" class="btn btn-primary" @click="getPrevious()">Previous</button>
     <div v-for="(lexicon, index) in lexicons">
       <div :id="'wordEdit'+index" class="lexiconWord" >

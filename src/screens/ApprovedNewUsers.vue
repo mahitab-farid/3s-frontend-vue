@@ -2,7 +2,6 @@
   <div  id="approvedNewUsers">
 
     <headerComponent></headerComponent>
-    <menuComponent></menuComponent>
       
     <div class="page-header">
      

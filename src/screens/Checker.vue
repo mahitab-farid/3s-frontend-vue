@@ -13,7 +13,7 @@
           <div class="QuestionAnswers">
                 <h1>{{currentQuestion}}</h1>
                   <ul v-for="questionAnswer in questionAnswers">
-                    <li>
+                    <li style="padding-left:70px;">
                       <button @click="submitRow(index, annotationReview.id, questionAnswer.answer, questionAnswer.id)" class="btn btn-primary"
                         v-bind:style="{ backgroundColor: questionAnswer.color}">{{questionAnswer.answer}} </button>
                     </li>
@@ -134,6 +134,7 @@ export default {
   font-family: "sans-serif";
   border: 2px solid black;
   padding: 0px;
+
 }
 
 .reviewtext{
@@ -145,7 +146,7 @@ export default {
   margin:20px auto;
   font-size: 20px;
   float:left; 
-  width: 1392px;
+  width: 1305px;
 
 }
 
@@ -159,7 +160,7 @@ export default {
 
 .QuestionAnswers {
   padding-top: 3px;
-  padding-left: 111px;
+  padding-left: 77px;
   overflow: hidden;
   float: left; /* add this */
 }

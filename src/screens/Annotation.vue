@@ -2,7 +2,6 @@
 
   <div  id="annotation">
     <headerComponent></headerComponent>
-    <menuComponent></menuComponent>
     <button id="answersbutton" class="btn btn-primary" @click="getPrevious()">Previous</button>
     <div v-for="(annotationReview, index) in annotationReviews">
       <div id="wrap">
@@ -12,10 +11,12 @@
         <div class="QuestionAnswers">
               <h1>{{currentQuestion}}</h1>
               <ul v-for="questionAnswer in questionAnswers">
-                  <li>
-                    <button @click="submitRow(index, annotationReview.id, questionAnswer.answer, questionAnswer.id)" class="btn btn-primary"
-                      v-bind:style="{ backgroundColor: questionAnswer.color}">{{questionAnswer.answer}} </button>
-                  </li>
+                <div id="checkerbutton">
+                    <li>
+                      <button @click="submitRow(index, annotationReview.id, questionAnswer.answer, questionAnswer.id)" class="btn btn-primary"
+                        v-bind:style="{ backgroundColor: questionAnswer.color}" >{{questionAnswer.answer}} </button>
+                    </li>
+                </div>
               </ul> 
 
         </div>
@@ -130,7 +131,7 @@ export default {
   overflow:scroll;
   background-color:#F6F6F6;
   text-align: center;
-  width:1600px;
+  width: 1305px;
   margin:20px auto;
   font-size: 20px;
   padding-top: 22px;
@@ -152,5 +153,8 @@ export default {
 }
 ul {
   list-style-type: none;
+}
+#checkerbutton{
+  padding-left:60px;
 }
 </style>

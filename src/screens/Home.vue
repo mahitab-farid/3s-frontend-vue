@@ -1,7 +1,6 @@
 <template>
   <div id="home">
     <headerComponent></headerComponent>
-    <menuComponent></menuComponent> 
       <h1><center><font color="red">WELCOME IN NLP-NEW-SYSTEM</font></center></h1>
   </div>
 </template>

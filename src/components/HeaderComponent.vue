@@ -7,9 +7,9 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-        <div class="login">
-        </div>
-          <menuComponent></menuComponent>
+     
+     <!--      <div class="menubar"> -->
+          <li id="mymenu"><menuComponent></menuComponent></li>
           <li v-if="admin"><a href="../adminHome.html" ><i class="fa fa-home fa-lg" aria-hidden="true"></i></a></li>
           <li v-if="!admin"><a href="../home.html" ><i class="fa fa-home fa-lg" aria-hidden="true"></i></a></li>
           <li><a href="#">About</a></li>
@@ -23,6 +23,7 @@
               <li><a href="#">Separated link</a></li>
             </ul>
           </li>
+       <!--  </div>  --> 
         </ul>
         <form class="navbar-form navbar-left" id="search">
           <div class="form-group">
@@ -32,7 +33,7 @@
         </form>
         <ul class="nav navbar-nav navbar-right">
          
-          <a href="#" @click="logout()">Logout <i class="fa fa-user-plus" aria-hidden="true"></i></a>
+          <a href="#" @click="logout()">Logout &nbsp; <i class="fa fa-sign-out fa-lg" aria-hidden="true"></i></a>
        
         </ul>
       
@@ -134,4 +135,8 @@ export default {
       padding-bottom: 15px;
       font-size: 21px;
   }
+ #mymenu{
+  padding-right: 17px;
+ }
+
 </style>
