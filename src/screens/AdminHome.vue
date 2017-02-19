@@ -1,7 +1,6 @@
 <template>
   <div id="adminHome">
-    <logoutComponent></logoutComponent>
-    <menuComponent></menuComponent> 
+    <headerComponent></headerComponent>
     <div class="row">
       <div class="col-lg-4" style="">
         <div class="dropdown" style="">
@@ -68,12 +67,13 @@ import LogoutComponent from '../components/LogoutComponent'
 import DoughuntChartComponent from '../components/DoughuntChartComponent'
 import TopAnnotatorsComponent from '../components/TopAnnotatorsComponent'
 import TopCheckersComponent from '../components/TopCheckersComponent'
+import HeaderComponent from '../components/HeaderComponent'
 import TopLexiconCheckersComponent from '../components/TopLexiconCheckersComponent'
 
 export default {
   name: 'adminHome',
   components: {
-     MenuComponent, LogoutComponent, DoughuntChartComponent, TopAnnotatorsComponent, TopCheckersComponent, TopLexiconCheckersComponent
+     MenuComponent, LogoutComponent, DoughuntChartComponent, TopAnnotatorsComponent, TopCheckersComponent, TopLexiconCheckersComponent, HeaderComponent
   },
  
   data(){

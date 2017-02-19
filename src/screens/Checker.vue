@@ -1,6 +1,6 @@
 <template>
   <div id="checker">
-    <logoutComponent></logoutComponent>
+    <headerComponent></headerComponent>
     <menuComponent></menuComponent>
     <button id="answersbutton" class="btn btn-primary" @click="getPrevious()">Previous</button>
     <div v-for="(checkReview, index) in checkReviews">
@@ -9,13 +9,14 @@
         </div>
         <div class="reviewsanswer" v-bind:style="{ backgroundColor: mapColoring[checkReview.answer_text]}">
           Annotation result is {{checkReview.answer_text}}
+          Annotator  is {{checkReview.annotator_name}}
         </div>
         <div class="QuestionAnswers">
           <div class="centered"> 
               <h1>{{currentQuestion}}</h1>
                 <ul v-for="questionAnswer in questionAnswers">
                   <li>
-                    <button @click="submitRow(index, annotationReview.id, questionAnswer.answer, questionAnswer.id)" class="btn btn-primary"
+                    <button @click="submitRow(index, checkReview.id, questionAnswer.answer, questionAnswer.id)" class="btn btn-primary"
                       v-bind:style="{ backgroundColor: questionAnswer.color}">{{questionAnswer.answer}} </button>
                   </li>
                 </ul> 
@@ -33,12 +34,12 @@
 import CheckerComponent from '../components/CheckerComponent'
 import QuestionAnswers from '../components/QuestionAnswers'
 import MenuComponent from '../components/MenuComponent'
-import LogoutComponent from '../components/LogoutComponent'
+import HeaderComponent from '../components/HeaderComponent'
 
 export default {
   name: 'checker',
   components: {
-    CheckerComponent, QuestionAnswers, MenuComponent, LogoutComponent
+    CheckerComponent, QuestionAnswers, MenuComponent, HeaderComponent
   },
  
   data(){

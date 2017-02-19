@@ -1,7 +1,7 @@
 F<template>
   
   <div id="statisticsDashboard">
-      <logoutComponent></logoutComponent>
+      <headerComponent></headerComponent>
       <menuComponent></menuComponent>
       <H3 class="center">USERS STATISTICS</H3>
     
@@ -65,12 +65,12 @@ import AnnotationUserStatisticsComponent from '../components/AnnotationUserStati
 import ChecksUserStatisticsComponent from '../components/ChecksUserStatisticsComponent.vue';
 import LexiconsUserStatisticsComponent from '../components/LexiconsUserStatisticsComponent.vue';
 import MenuComponent from '../components/MenuComponent'
-import LogoutComponent from '../components/LogoutComponent'
+import HeaderComponent from '../components/HeaderComponent'
 
 export default {
   name: 'statisticsDashboard',
   components: {
-    AnnotationUserStatisticsComponent, ChecksUserStatisticsComponent, LexiconsUserStatisticsComponent, MenuComponent, LogoutComponent
+    AnnotationUserStatisticsComponent, ChecksUserStatisticsComponent, LexiconsUserStatisticsComponent, MenuComponent, HeaderComponent
   },
  
   data(){

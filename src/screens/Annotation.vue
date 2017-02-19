@@ -1,7 +1,7 @@
 <template>
 
   <div  id="annotation">
-    <logoutComponent></logoutComponent>
+    <headerComponent></headerComponent>
     <menuComponent></menuComponent>
     <button id="answersbutton" class="btn btn-primary" @click="getPrevious()">Previous</button>
     <div v-for="(annotationReview, index) in annotationReviews">
@@ -31,12 +31,12 @@
 import AnnotationComponent from '../components/AnnotationComponent'
 import QuestionAnswers from '../components/QuestionAnswers'
 import MenuComponent from '../components/MenuComponent'
-import LogoutComponent from '../components/LogoutComponent'
+import HeaderComponent from '../components/HeaderComponent'
 
 export default {
   name: 'annotation',
   components: {
-    AnnotationComponent, QuestionAnswers, MenuComponent, MenuComponent, LogoutComponent
+    AnnotationComponent, QuestionAnswers, MenuComponent, MenuComponent, HeaderComponent
   },
  
   data(){

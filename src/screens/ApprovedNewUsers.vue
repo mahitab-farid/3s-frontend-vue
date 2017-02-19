@@ -1,7 +1,7 @@
 <template>
   <div  id="approvedNewUsers">
 
-    <logoutComponent></logoutComponent>
+    <headerComponent></headerComponent>
     <menuComponent></menuComponent>
       
     <div class="page-header">
@@ -53,12 +53,12 @@
 import UnapprovedUsersComponent from '../components/UnapprovedUsersComponent'
 import AssignedRolesComponent from '../components/AssignedRolesComponent'
 import MenuComponent from '../components/MenuComponent'
-import LogoutComponent from '../components/LogoutComponent'
+import HeaderComponent from '../components/HeaderComponent'
 
 export default {
   name: 'approvedNewUsers',
   components: {
-    UnapprovedUsersComponent, AssignedRolesComponent, MenuComponent, LogoutComponent
+    UnapprovedUsersComponent, AssignedRolesComponent, MenuComponent, HeaderComponent
   },
  
   data(){
@@ -92,7 +92,7 @@ export default {
    
         axios({
           method: 'POST',
-          url: 'http://localhost:9010/user/approvedUser',
+          url: window.hostname + '/user/approvedUser',
           data: formData,
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         })

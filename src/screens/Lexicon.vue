@@ -1,6 +1,6 @@
 <template>
   <div id="lexicon">
-    <logoutComponent></logoutComponent>
+    <headerComponent></headerComponent>
     <menuComponent></menuComponent>
     <button id="answersbutton" style="float: left;" class="btn btn-primary" @click="getPrevious()">Previous</button>
     <div v-for="(lexicon, index) in lexicons">
@@ -27,12 +27,12 @@
 import LexiconsComponent from '../components/LexiconsComponent'
 import LexiconAnswersTypesComponent from '../components/LexiconAnswersTypesComponent'
 import MenuComponent from '../components/MenuComponent'
-import LogoutComponent from '../components/LogoutComponent'
+import HeaderComponent from '../components/HeaderComponent'
 
 export default {
   name: 'lexicon',
   components: {
-    LexiconsComponent, LexiconAnswersTypesComponent, MenuComponent, LogoutComponent
+    LexiconsComponent, LexiconAnswersTypesComponent, MenuComponent, HeaderComponent
   },
  
   data(){
