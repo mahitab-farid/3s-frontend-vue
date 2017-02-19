@@ -3,23 +3,28 @@
     <logoutComponent></logoutComponent>
     <menuComponent></menuComponent>
     <button id="answersbutton" class="btn btn-primary" @click="getPrevious()">Previous</button>
-    <div v-for="(checkReview, index) in checkReviews">
-        <div class="reviewtext">
-        {{checkReview.review_text}}
-        </div>
+    <div class="allreviews" v-for="(checkReview, index) in checkReviews">
+      <!-- <div class="reviewsanswer" v-bind:style="{ backgroundColor: mapColoring[checkReview.answer_text]}">
+          Annotation result is {{checkReview.answer_text}}
+        </div> -->
+       <div id="wrap1">
+          <div class="reviewtext">
+          {{checkReview.review_text}}
+          </div>
+        
+          <div class="QuestionAnswers">
+                <h1>{{currentQuestion}}</h1>
+                  <ul v-for="questionAnswer in questionAnswers">
+                    <li>
+                      <button @click="submitRow(index, annotationReview.id, questionAnswer.answer, questionAnswer.id)" class="btn btn-primary"
+                        v-bind:style="{ backgroundColor: questionAnswer.color}">{{questionAnswer.answer}} </button>
+                    </li>
+                  </ul> 
+          </div>
+          </div>
         <div class="reviewsanswer" v-bind:style="{ backgroundColor: mapColoring[checkReview.answer_text]}">
           Annotation result is {{checkReview.answer_text}}
-        </div>
-        <div class="QuestionAnswers">
-          <div class="centered"> 
-              <h1>{{currentQuestion}}</h1>
-                <ul v-for="questionAnswer in questionAnswers">
-                  <li>
-                    <button @click="submitRow(index, annotationReview.id, questionAnswer.answer, questionAnswer.id)" class="btn btn-primary"
-                      v-bind:style="{ backgroundColor: questionAnswer.color}">{{questionAnswer.answer}} </button>
-                  </li>
-                </ul> 
-          </div>
+          Annotator is Mr mohamed mostafa
         </div>
     </div> 
   <checkerComponent v-on:event_checker="eventChecker" :checkerSubmit="checkerSubmit" :numOfReviews="numOfReviews"></checkerComponent>
@@ -111,44 +116,59 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   //text-align: center;
   color: #2c3e50;
-//  margin-top: 60px;
+  //  margin-top: 60px;
 
 
 }
 
 .reviewswrapper {
-    text-align: center;
-    margin-top: 20px;
+  text-align: center;
+  margin-top: 20px;
   margin-left:260px;
 }
 
 .reviewsanswer {
   float: right;
   text-align: center;
-  height:45px;
+  height: 58px;
   background-color: #D3D3D3;
-  width:350px;
-  margin:20px auto;
-
-   font-size: 20px;
-   font-family: "sans-serif";
-   border: 2px solid black;
-   padding: 6px;
+  width: 409px;
+  font-size: 20px;
+  font-family: "sans-serif";
+  border: 2px solid black;
+  padding: 0px;
 }
 
 .reviewtext{
-    height:150px;
-  /*width:1170px;*/
+  height:150px;
   overflow:scroll;
   background-color:#F6F6F6;
   text-align: center;
-  width:1600px;
-   margin:20px auto;
-   font-size: 20px
+  width: 1478px;
+  margin:20px auto;
+  font-size: 20px;
+  float:left; 
+
 }
 
 #reviewsbutton{
-margin: 1px;
+  margin: 1px;
 
 }
+#wrap1 {
+  overflow: hidden; 
+}
+
+.QuestionAnswers {
+  padding-top: 3px;
+  overflow: hidden;
+  float: left; /* add this */
+}
+.allreviews{
+  margin: 58px;
+}
+ul {
+  list-style-type: none;
+}
+
 </style>
