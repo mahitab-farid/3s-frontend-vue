@@ -12,7 +12,7 @@
           <li id="mymenu"><menuComponent></menuComponent></li>
           <li v-if="admin"><a href="../adminHome.html" ><i class="fa fa-home fa-lg" aria-hidden="true"></i></a></li>
           <li v-if="!admin"><a href="../home.html" ><i class="fa fa-home fa-lg" aria-hidden="true"></i></a></li>
-          <li><a href="#">About</a></li>
+          <li><a href="#">{{userName}}</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
             <ul class="dropdown-menu">
@@ -61,7 +61,8 @@ export default {
         admin: false,
         annotator: false,
         checker: false,
-        lexicon_checker: false
+        lexicon_checker: false,
+        userName: window.sessionStorage.getItem('userName')
     }
   },
   mounted: function(){

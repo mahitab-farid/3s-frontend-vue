@@ -14,7 +14,7 @@
                 <h1>{{currentQuestion}}</h1>
                   <ul v-for="questionAnswer in questionAnswers">
                     <li style="padding-left:70px;">
-                      <button @click="submitRow(index, annotationReview.id, questionAnswer.answer, questionAnswer.id)" class="btn btn-primary"
+                      <button @click="submitRow(index, checkReview.id, questionAnswer.answer, questionAnswer.id)" class="btn btn-primary"
                         v-bind:style="{ backgroundColor: questionAnswer.color}">{{questionAnswer.answer}} </button>
                     </li>
                   </ul> 
