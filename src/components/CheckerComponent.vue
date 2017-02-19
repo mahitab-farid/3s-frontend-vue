@@ -1,8 +1,8 @@
 <template>
   <div class="checkerComponent">
     {{computedChecksSubmit}}
-    <div style="margin-left:840px;margin-top:300px">
-      <button @click="getCheckReviews()" id="NextReviews">Get Next</button>
+    <div class="center" id="NextReviews" >
+      <button class="btn btn-primary" @click="getCheckReviews()" >Get Next</button>
     </div>
   </div>
 </template>
@@ -102,5 +102,11 @@ export default {
 #checkerComponent{
 
 }
+#NextReviews[data-v-5f349455] {
+    padding-top: 126px;
+}
 
+.center{
+  text-align: center
+}
 </style>

@@ -2,8 +2,8 @@
   <div class="lexiconComponent">
         {{computedLexiconsSubmit}}
     <div class="center">
-      <button class="btn btn-info" style="margin-top:300px" @click="getLexicons()" id="lexicon">Get Next</button>
-      
+      <button   id="lexicon" class="btn btn-primary" style="margin-top:300px" @click="getLexicons()">Get Next</button>
+    
     </div>
        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   </div>
@@ -101,6 +101,12 @@ export default {
 <style scoped>
 #lexiconComponent{
 
+}
+#lexicon{
+
+}
+.center{
+  text-align: center
 }
 
 </style>
