@@ -22,7 +22,7 @@ methods:{
 	getLexiconsAnswersTypes: function(){
 
       var that = this;                           
-      axios.get('http://localhost:9010/lexicon/getLexiconsType', {
+      axios.get(window.hostname + '/lexicon/getLexiconsType', {
 
         })
         .then(function (response) {

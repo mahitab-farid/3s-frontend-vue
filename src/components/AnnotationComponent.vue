@@ -42,10 +42,10 @@ export default {
 
                   var that = this;
                                              
-                  axios.get('http://localhost:9010/annotation/getAssignedAnnotationReviews', {
+                  axios.get(window.hostname+'/annotation/getAssignedAnnotationReviews', {
                       params: {
                         user_id: window.sessionStorage.getItem('user_id'),
-                        question_code: 'pos'
+                        question_code: 'positivity'
                       }
                     })
                     .then(function (response) {
@@ -53,7 +53,6 @@ export default {
                       if (response.status == 204){
                         alert('There is No reviews!');
                       }else{
-
                         that.annotationReviews = response.data;
                         that.numOfReviews = response.data.length;
                         that.$emit('event_annotation', response.data);
@@ -79,7 +78,7 @@ export default {
 
         axios({
           method: 'POST',
-          url: 'http://localhost:9010/Annotation/annotationSubmit',
+          url: window.hostname + '/Annotation/annotationSubmit',
           data: formData,
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         })

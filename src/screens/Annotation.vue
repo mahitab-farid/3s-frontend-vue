@@ -1,4 +1,5 @@
 <template>
+
   <div  id="annotation">
     <logoutComponent></logoutComponent>
     <menuComponent></menuComponent>
@@ -7,14 +8,18 @@
       <div id="annotate">
         {{annotationReview.review_text}}
       </div>
-      <div class="annotationWrapper">
-        
-        <button id="answersbutton" class="btn btn-primary" @click="submitRow(index, annotationReview.id, questionAnswer.answer, questionAnswer.id)"    v-for="questionAnswer in questionAnswers"  v-bind:style="{ backgroundColor: questionAnswer.color}">
-          
-          {{questionAnswer.answer}}
-
+      <div class="QuestionAnswers">
+        <div class="centered"> 
+            <h1>{{currentQuestion}}</h1>
+              <ul v-for="questionAnswer in questionAnswers">
+                <li>
+                  <button @click="submitRow(index, annotationReview.id, questionAnswer.answer, questionAnswer.id)" class="btn btn-primary"
+                    v-bind:style="{ backgroundColor: questionAnswer.color}">{{questionAnswer.answer}} </button>
+                </li>
+              </ul> 
+        </div>
       </div>
-    </div> 
+    </div>  
       <annotationComponent v-on:event_annotation="eventAnnotation" :annotationSubmit="annotationSubmit" :numOfReviews="numOfReviews"></annotationComponent>
       
       <questionAnswers v-on:event_questionAnswers="eventQuestionAnswers"></questionAnswers>
@@ -40,7 +45,8 @@ export default {
      previousAnnotationStack: [],
      questionAnswers: [],
      numOfReviews: 0,
-     annotationSubmit: {annotationIds: [], reviewsResult: [], reviewsResultId: []}
+     annotationSubmit: {annotationIds: [], reviewsResult: [], reviewsResultId: []},
+     currentQuestion:''
      
     }
   },
@@ -58,7 +64,9 @@ export default {
       },
 
         eventQuestionAnswers: function(questionAnswers) {
-          this.questionAnswers = questionAnswers;
+          console.log("nabil: ", questionAnswers.answers);
+          this.questionAnswers = questionAnswers.answers;
+          this.currentQuestion = questionAnswers.question_text;
           console.log('Event from questions component emitted', questionAnswers);
       },
 
@@ -115,7 +123,6 @@ export default {
 .center {
     text-align: center;
 }
-
 
 #annotate{
   height:200px;

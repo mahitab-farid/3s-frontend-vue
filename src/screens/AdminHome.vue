@@ -110,14 +110,13 @@ export default {
 
     annotationReviewsStatistics: function(){
       var that = this;                           
-      axios.get('http://localhost:9010/administration/getAnnotationsReviewsStatistics', {
+      axios.get(window.hostname + '/administration/getAnnotationsReviewsStatistics', {
         })
         .then(function (response) {
 
             that.annotationDataMap = new Object();
             
             for (var i = 0; i < response.data.totalNumberOfAnnotations.length; i++){
-              
               that.annotationDataMap[response.data.totalNumberOfAnnotations[i].question_code] = [response.data.numOfReviews - response.data.totalNumberOfAnnotations[i].count, response.data.totalNumberOfAnnotations[i].count]; 
               that.AnnotationQuestions.push(response.data.totalNumberOfAnnotations[i].question_code);
               that.currentAnnotationQuestion = response.data.totalNumberOfAnnotations[i].question_code;
@@ -134,7 +133,7 @@ export default {
 
     checkReviewsStatistics: function(){
       var that = this;                           
-      axios.get('http://localhost:9010/administration/getCheckReviewsStatistics', {
+      axios.get(window.hostname + '/administration/getCheckReviewsStatistics', {
         })
         .then(function (response) {
 
@@ -158,7 +157,7 @@ export default {
 
     lexiconsStatistics: function(){
       var that = this;                           
-      axios.get('http://localhost:9010/administration/getLexiconsStatistics', {
+      axios.get(window.hostname + '/administration/getLexiconsStatistics', {
         })
         .then(function (response) {
             that.lexiconsData = [response.data.totalNumberOfLexicons - response.data.numOfDoneLexicons, response.data.numOfDoneLexicons];

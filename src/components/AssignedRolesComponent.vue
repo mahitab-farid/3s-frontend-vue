@@ -38,7 +38,7 @@ export default {
 
           var that = this;
                                  
-          axios.get('http://localhost:9010/roles/getRoles', {
+          axios.get(window.hostname + '/roles/getRoles', {
            
             })
             .then(function (response) {
@@ -75,7 +75,7 @@ export default {
       
         axios({
           method: 'POST',
-          url: 'http://localhost:9010/roles/assignedRoles',
+          url: window.hostname + '/roles/assignedRoles',
           data: formData,
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         })

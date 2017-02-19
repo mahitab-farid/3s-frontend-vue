@@ -41,7 +41,7 @@ export default {
     getUserAnnotationStatistics: function(){
 
       var that = this;                
-      axios.get('http://localhost:9010/administration/getUserAnnotationStatistics', {
+      axios.get(window.hostname + '/administration/getUserAnnotationStatistics', {
 
                       params: {
                         user_id: that.user_id

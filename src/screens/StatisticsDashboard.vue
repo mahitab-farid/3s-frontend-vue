@@ -8,6 +8,7 @@ F<template>
     <table style="width:100%">
       <thead>
       <tr>
+        <th>#</th>
         <th>Name</th>
         <th>Number of annotation reviews</th>
         <th>Number of checker reviews</th>
@@ -18,10 +19,10 @@ F<template>
       </tr>
       </thead>
       <tbody>
-        <tr v-for="usersStatistic in usersStatistics">
+        <tr v-for="(usersStatistic, index) in usersStatistics">
             
-           <td> <a href="javascript:void(0)" @click="showTab(usersStatistic.user_id, usersStatistic.user_name)">{{usersStatistic.user_name}}</a></td>
-            
+          <td>{{index + 1}}</td>  
+          <td> <a href="javascript:void(0)" @click="showTab(usersStatistic.user_id, usersStatistic.user_name)">{{usersStatistic.user_name}}</a></td>
           <td>{{usersStatistic.numOfAnnotationReviews}}</td>
           <td>{{usersStatistic.numOfChecksReviews}}</td>
           <td>{{usersStatistic.numOfLexiconsReviews}}</td>
@@ -88,7 +89,7 @@ export default {
     getUsersStatistics: function(){
 
       var that = this;                           
-      axios.get('http://localhost:9010/administration/allUsersStatisticsDashboard', {
+      axios.get(window.hostname + '/administration/allUsersStatisticsDashboard', {
    
         })
         .then(function (response) {

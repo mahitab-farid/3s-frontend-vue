@@ -38,7 +38,7 @@ export default {
 
                   var that = this;
                                              
-                  axios.get('http://localhost:9010/lexicon/getAssignedLexicons', {
+                  axios.get(window.hostname + '/lexicon/getAssignedLexicons', {
                       params: {
                         user_id: window.sessionStorage.getItem('user_id')
                       }
@@ -50,6 +50,7 @@ export default {
                       }else{
 
                         that.lexicons = response.data;
+                        console.log(response.data[0].word);
                         that.numOfLexicons = response.data.length;
                         that.$emit('event_lexicons', response.data);
                       }
@@ -74,7 +75,7 @@ export default {
 
         axios({
           method: 'POST',
-          url: 'http://localhost:9010/lexicon/submitLexicon',
+          url: window.hostname + '/lexicon/submitLexicon',
           data: formData,
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         })

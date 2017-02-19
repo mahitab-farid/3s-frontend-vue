@@ -48,7 +48,7 @@ export default {
   methods:{
     getTopAnnotators: function(){
       var that = this;                           
-      axios.get('http://localhost:9010/administration/topAnnotators', {
+      axios.get(window.hostname + '/administration/topAnnotators', {
         })
         .then(function (response) {
             that.topAnnotators = response.data;

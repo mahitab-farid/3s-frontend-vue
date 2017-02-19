@@ -25,12 +25,12 @@ import Routes from './routes.js'
 
 Vue.use(VueRouter);
 Vue.use(axios);
-
-
+window.hostname = 'http://localhost:9010';
 // 3. Create the router instance and pass the `routes` option
 // You can pass in additional options here, but let's
 // keep it simple for now.
 /* eslint-disable no-new */
+
 if (document.querySelector('#app')){
   new Vue({
     el: '#app',
@@ -45,6 +45,7 @@ if (document.querySelector('#app')){
     }
   });
 }
+
 
 if (document.querySelector('#statisticsDashboard')){
   new Vue({

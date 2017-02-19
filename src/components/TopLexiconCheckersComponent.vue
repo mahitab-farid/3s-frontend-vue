@@ -48,7 +48,7 @@ export default {
   methods:{
     getTopLexiconCheckers: function(){
       var that = this;                           
-      axios.get('http://localhost:9010/administration/topLexiconCheckers', {
+      axios.get(window.hostname + '/administration/topLexiconCheckers', {
         })
         .then(function (response) {
             that.topLexiconCheckers = response.data;

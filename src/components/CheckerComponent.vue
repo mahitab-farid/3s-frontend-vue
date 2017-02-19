@@ -38,10 +38,10 @@ export default {
 
                   var that = this;
                                              
-                  axios.get('http://localhost:9010/checker/getAssignedCheckingReviews', {
+                  axios.get(window.hostname + '/checker/getAssignedCheckingReviews', {
                       params: {
                         user_id: window.sessionStorage.getItem('user_id'),
-                        question_code: 'pos'
+                        question_code: 'positivity'
                       }
                     })
                     .then(function (response) {
@@ -74,7 +74,7 @@ export default {
 
         axios({
           method: 'POST',
-          url: 'http://localhost:9010/checker/checkSubmit',
+          url: window.hostname + '/checker/checkSubmit',
           data: formData,
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         })

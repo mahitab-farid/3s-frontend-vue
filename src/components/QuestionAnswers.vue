@@ -22,9 +22,9 @@ methods:{
 	getQuestionAnswers: function(){
 
       var that = this;                           
-      axios.get('http://localhost:9010/questions/getQuestionAnswers', {
+      axios.get(window.hostname + '/questions/getQuestionAnswers', {
           params: {
-            question_code: 'pos'
+            question_code: 'positivity'
           }
         })
         .then(function (response) {

@@ -47,8 +47,9 @@ export default {
 
   methods:{
     getTopCheckers: function(){
-      var that = this;                           
-      axios.get('http://localhost:9010/administration/topCheckers', {
+      var that = this;                     
+      axios.get(window.hostname + '/administration/topCheckers', {
+
         })
         .then(function (response) {
             that.topCheckers = response.data;

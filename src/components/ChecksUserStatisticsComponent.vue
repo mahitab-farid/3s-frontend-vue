@@ -41,7 +41,7 @@ export default {
     getUserChecksStatistics: function(){
 
       var that = this;                
-      axios.get('http://localhost:9010/administration/getUserchecksStatistics', {
+      axios.get(window.hostname + '/administration/getUserchecksStatistics', {
 
                       params: {
                         user_id: that.user_id

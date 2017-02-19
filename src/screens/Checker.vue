@@ -10,9 +10,16 @@
         <div class="reviewsanswer" v-bind:style="{ backgroundColor: mapColoring[checkReview.answer_text]}">
           Annotation result is {{checkReview.answer_text}}
         </div>
-        <div class="reviewswrapper">
-          <button id="reviewsbutton" class="btn btn-primary" @click="submitRow(index, checkReview.id, questionAnswer.answer, questionAnswer.id)"    v-for="questionAnswer in questionAnswers" v-bind:style="{ backgroundColor: questionAnswer.color}">
-            {{questionAnswer.answer}}
+        <div class="QuestionAnswers">
+          <div class="centered"> 
+              <h1>{{currentQuestion}}</h1>
+                <ul v-for="questionAnswer in questionAnswers">
+                  <li>
+                    <button @click="submitRow(index, annotationReview.id, questionAnswer.answer, questionAnswer.id)" class="btn btn-primary"
+                      v-bind:style="{ backgroundColor: questionAnswer.color}">{{questionAnswer.answer}} </button>
+                  </li>
+                </ul> 
+          </div>
         </div>
     </div> 
   <checkerComponent v-on:event_checker="eventChecker" :checkerSubmit="checkerSubmit" :numOfReviews="numOfReviews"></checkerComponent>
@@ -41,7 +48,8 @@ export default {
      numOfReviews: 0,
      previousChecksStack: [],
      checkerSubmit: {checkerIds: [], reviewsResult: [], reviewsResultId: []},
-     mapColoring: ''
+     mapColoring: '',
+     currentQuestion:''
      
     }
   },
@@ -54,10 +62,11 @@ export default {
       },
 
         eventQuestionAnswers: function(questionAnswers) {
-          this.questionAnswers = questionAnswers;
+          this.questionAnswers = questionAnswers.answers;
+          this.currentQuestion = questionAnswers.question_text;
           this.mapColoring = new Object();
-          for (var i =0 ; i < questionAnswers.length; i++){
-              this.mapColoring[questionAnswers[i].answer] = questionAnswers[i].color;
+          for (var i =0 ; i < this.questionAnswers.length; i++){
+              this.mapColoring[this.questionAnswers[i].answer] = this.questionAnswers[i].color;
           }
           console.log('Event from questions component emitted', questionAnswers);
       },

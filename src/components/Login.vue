@@ -92,8 +92,6 @@ export default {
                   window.location.replace("../../home.html");
             } , 
 
-
-
             login: function(){
                   var that = this;
                   
@@ -103,7 +101,7 @@ export default {
                            
                   axios({
                     method: 'POST',
-                    url: 'http://localhost:9010/user/login',
+                    url: window.hostname + '/user/login',
                     data: formData,
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                   })
