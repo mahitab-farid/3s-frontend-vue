@@ -29,7 +29,7 @@
           <td v-on:click="save(row.id,row.description,row.question_kind,row)"><i class="fa fa-floppy-o" aria-hidden="true" ></i>
           </td>
           <td v-on:click="showanswer(row.id,row)"><button>show answer</button></td>
-          <td>{{row.answers[index].attributes.answer}}</td>
+          <td>{{row.answers[0].answer}}</td>
         </tr>
       </tbody>
       </table>
