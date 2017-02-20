@@ -119,20 +119,24 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style type="text/css" scoped>
- 
+  .headerComponent{
+    background-color: #0000ff;
+  }
   #search{
 
   }
 
   .container-fluid {
     padding-top: 17px;
+    background-color: #ff99ff;
   } 
   .navbar-default .navbar-nav>li>a {
       color: #777;
       font-size: 20px;
+
   }
   .navbar-right {
-             padding-top: 9px;
+      padding-top: 9px;
       padding-bottom: 15px;
       font-size: 21px;
   }

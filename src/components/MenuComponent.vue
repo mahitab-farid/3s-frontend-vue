@@ -5,12 +5,16 @@
       <a href="javascript:void(0)" class="closebtn" @click="closeNav()">&times;</a>
       <div class="overlay-content">
         
-
+        <!-- <a href="../home.html" v-if="!admin">Home</a>
+        <a href="../adminHome.html" v-if="admin">Home</a>
+        <a href="#" >Profile</a> -->
+        
         <a href="../annotation.html" v-if="admin||annotator">Annotation</a>
         <a href="../checker.html" v-if="admin||checker">Checking reviews</a>
         <a href="../lexicon.html" v-if="admin||lexicon_checker">Lexicons</a>
         <a href="../statisticsDashboard.html" v-if="admin">Users Statistics</a>
         <a href="../approvedNewUsers.html" v-if="admin">Users Approval</a>
+        <a href="../questions.html" v-if="admin">Questions</a>
         <a href="#">Settings</a>
  
         

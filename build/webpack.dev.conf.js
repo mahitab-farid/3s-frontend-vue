@@ -73,6 +73,11 @@ module.exports = merge(baseWebpackConfig, {
       template: 'adminHome.html',
       inject: true
     }),
+        new HtmlWebpackPlugin({
+      filename: 'questions.html',
+      template: 'questions.html',
+      inject: true
+    }),
     new FriendlyErrors()
   ]
 })

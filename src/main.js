@@ -14,6 +14,7 @@ import Checker   from './screens/Checker'
 import Home   from './screens/Home'
 import AdminHome   from './screens/AdminHome'
 import Lexicon   from './screens/Lexicon'
+import Questions   from './screens/Questions'
 import Signup from './components/signup'
 import AnnotationComponent from './components/AnnotationComponent'
 import CheckCookiesComponent from './components/CheckCookiesComponent'
@@ -45,6 +46,22 @@ if (document.querySelector('#app')){
     }
   });
 }
+
+if (document.querySelector('#questions')){
+  new Vue({
+    el: '#questions',
+    template: '<Questions/>',
+    components: { Questions },
+     http: {
+      root: '/root',
+      headers: {
+        'access-control-allow-origin,content-type': '*',
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    }
+  });
+}
+
 
 
 if (document.querySelector('#statisticsDashboard')){
