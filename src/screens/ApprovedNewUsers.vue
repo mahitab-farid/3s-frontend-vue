@@ -3,9 +3,6 @@
 
     <headerComponent></headerComponent>
       
-    <div class="page-header">
-     
-    </div>
     <div class="container">
 
       <table class="table table-striped"  width="100%">
@@ -35,14 +32,14 @@
       <div id="light" class="white_content"><h3>{{currentUserName}}'s Assigned Roles</h3>
 
     
-      <h3 style="text-align:center">Roles</h3>
-        <assignedRolesComponent :user_id="currentUserId"></assignedRolesComponent>
-      </div>
-      <div id="fade" class="black_overlay"></div>
-  
-      <unapprovedUsersComponent v-on:event_unapprovedUsers="eventUnapprovedUsers"></unapprovedUsersComponent>
+        <h3 style="text-align:center">Roles</h3>
+          <assignedRolesComponent :user_id="currentUserId"></assignedRolesComponent>
+        </div>
+        <div id="fade" class="black_overlay"></div>
+    
+        <unapprovedUsersComponent v-on:event_unapprovedUsers="eventUnapprovedUsers"></unapprovedUsersComponent>
       
-    </div>
+      </div>
 
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div class="topCheckersComponent">
-    <table class="table table-bordered table-striped" style="background: #66ff66;border-radius:30px;">
+    <table class="table table-bordered table-striped" style="background: #b3b3b3;border-radius:30px;">
       <thead>
       <tr>
         <th colspan="4"><i class="fa fa-arrow-right fa-lg" aria-hidden="true"></i>Top Checkers</th>
@@ -14,7 +14,7 @@
         </tr>
       </thead>
       <tbody v-for="(topChecker, index) in topCheckers">
-        <tr style="background: #b3fff0;">
+        <tr style="background: #e6e6e6;">
            <th scope="row"><img src="../assets/user.png" width="40"></th>
           <th>{{index+1}}</th>
           <td style="margin-right:30px;">{{topChecker.user_name}}</td>

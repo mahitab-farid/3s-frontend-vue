@@ -54,7 +54,7 @@ F<template>
       <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">Close</a>
     </div>
     <div id="fade" class="black_overlay"></div>
- 
+    <AnnotatorsQualityTableComponent></AnnotatorsQualityTableComponent>
   </div>
 </template>
 
@@ -64,12 +64,13 @@ import AnnotationUserStatisticsComponent from '../components/AnnotationUserStati
 import ChecksUserStatisticsComponent from '../components/ChecksUserStatisticsComponent.vue';
 import LexiconsUserStatisticsComponent from '../components/LexiconsUserStatisticsComponent.vue';
 import MenuComponent from '../components/MenuComponent'
+import AnnotatorsQualityTableComponent from '../components/AnnotatorsQualityTableComponent'
 import HeaderComponent from '../components/HeaderComponent'
 
 export default {
   name: 'statisticsDashboard',
   components: {
-    AnnotationUserStatisticsComponent, ChecksUserStatisticsComponent, LexiconsUserStatisticsComponent, MenuComponent, HeaderComponent
+    AnnotationUserStatisticsComponent, ChecksUserStatisticsComponent, LexiconsUserStatisticsComponent, MenuComponent, HeaderComponent, AnnotatorsQualityTableComponent
   },
  
   data(){
