@@ -1,11 +1,12 @@
 <template>
   <div class="questiontable">
-<i id="addquestion" class="fa fa-plus" aria-hidden="true" @click="addRow(newitem)"></i>
+<i id="addquestion" class="fa fa-plus fa-lg" aria-hidden="true" @click="addRow(questions)"></i>
     <div>
 
-      <table class="table table-hover table-bordered" >
+      <table  id="rowClick" class="table table-hover table-bordered" >
       <thead>
         <tr class="active">
+          <th>#</th>
           <th>question_id</th>
           <th>question_code</th>
           <th>text</th>
@@ -13,23 +14,25 @@
           <th>delete</th>
           <th>save</th>
           <th>possible answers</th>
-          <th>try</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="member">
         <tr  v-for="(row, index) in questions " :id="row.id">
+          <td>{{index}}</td>
           <td>{{row.id}}</td>
-          <td>{{row.question_code}}</td>
+          <td>
+           <span v-show="!row.visible">{{row.question_code}}</span>
+            <input v-show="row.visible" type="text" v-model="row.question_code">
+          </td>
           <td> 
-            <span v-show="!row.visible"  >{{row.question_text}}</span>
-            <input v-show="row.visible" type="text" v-model="row.question_kind">
+             <span v-show="!row.visible"  >{{row.question_text}}</span>
+            <input v-show="row.visible" type="text" v-model="row.question_text">
           </td>
-          <td v-on:click="show3(row)"><i class="fa fa-pencil" aria-hidden="true"></i></td>
+          <td v-on:click="edit(row)"><i class="fa fa-pencil" aria-hidden="true"></i></td>
           <td v-on:click="deletee(row.id)"><i class="fa fa-trash" aria-hidden="true"></i></td>
-          <td v-on:click="save(row.id,row.description,row.question_kind,row)"><i class="fa fa-floppy-o" aria-hidden="true" ></i>
+          <td v-on:click="checkId(row.id,row.question_text,row.question_code,row,index)"><i class="fa fa-floppy-o" aria-hidden="true" ></i>
           </td>
-          <td v-on:click="showanswer(row.id,row)"><button>show answer</button></td>
-          <td>{{row.answers[0].answer}}</td>
+          <td v-on:click="showanswer(row.id,row.answers)"><button>show answer</button></td>
         </tr>
       </tbody>
       </table>
@@ -52,136 +55,173 @@ import axios from 'axios'
 export default {
 
   name: 'questionscomponent',
-  props: ['newitem'],
   mounted: function(){
     this.getQuestions();
   },
   methods: {
-     getQuestions: function(){
+    checkId:function(rowId,question_text,question_code,row,index){
+      if(rowId == null){
+        this.insertRow(question_text,question_code,row,index);
+      }
+      else{
 
-                  var that = this;
-                                             
-                  axios.get(window.hostname+'/questions/getAllQuestionsWithAnswers', {
-                      params: {
-                       
-                      }
-                    })
-                    .then(function (response) {
-                      console.log('response: ',response);                    
-                      if (response.status == 204){
-                        alert('There is No questions!');
-                      }else{
-                        that.questions = response.data;
-                        // that.$emit('event_questions', response.data);
-                      }
-                    })
-                    .catch(function (error) {
-                      console.log(error);
-                    });
+        this.updateRow(rowId,question_text,question_code,row,index);
+      }
+    },
+    insertRow:function(question_text,question_code,row,index){
+      var that=this;
+      row.visible=false;
+      var formData = new FormData();
+      formData.append('question_text', question_text);
+      formData.append('question_code', question_code)
+      axios({
+        method: 'POST',
+        url: window.hostname + '/questions/addQuestion',
+        data: formData,
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+      })
+      .then(function (response) {
+         that.key=response.data;
+         that.questions[index].id=that.key;
+         that.questions[index].answers=[]
+         that.$forceUpdate();
+         console.log("index id is"+ index);
+         console.log("my key is",that.key);
 
-        },
+      })
+      .catch(function (error) {
+         console.log('[.] Fail : ',error);
+         alert(error);
+      });
+
+    },
+
+    updateRow:function(rowId,question_text,question_code,row,index){
+      var that=this;
+      row.visible=false;
+      that.$forceUpdate();
+      console.log("qiuestion is id and code and text",rowId,question_text,question_code)
+      var formData = new FormData();
+      formData.append('question_text', question_text);
+      formData.append('question_code', question_code) ; 
+      formData.append('question_id', rowId) ;                       
+      axios({
+        method: 'POST',
+        url: window.hostname + '/questions/editQuestion',
+        data: formData
+        ,
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+      })
+      .then(function (response) {
+        console.log("response"+response.data);
+      })
+      .catch(function (error) {
+        console.log('[.] Fail : ',error.response.data);
+        alert(error.response.data);
+      });
+    },   
+
+    getQuestions: function(){
+      var that = this;
+      axios.get(window.hostname+'/questions/getAllQuestionsWithAnswers', {
+      params: {
+      }
+      })
+      .then(function (response) {
+        console.log('response: ',response);                    
+        if (response.status == 204){
+        alert('There is No questions!');
+        }else{
+        that.questions = response.data;
+        that.questions.forEach(function(element){
+        element['visible']=false;
+        });
+        // that.$emit('event_questions', response.data);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    },
+
     clickCallback: function (pageNum) {
       console.log('### page number: ', pageNum)
     },
     deletee: function (deleteId) {
       console.log("id is"+deleteId);
       document.getElementById(deleteId).style.display="none";
+      var that=this;
+      var formData = new FormData();
+      formData.append('question_id', deleteId);
 
-      /*
-      axios.get('/Delete', {
-      params: {
-      id: deleteid,
-
-      }
+      axios({
+        method: 'POST',
+        url: window.hostname + '/questions/deleteQuestion',
+        data: formData,
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
       })
       .then(function (response) {
+        console.log("deleted")
 
-      console.log(response);
       })
-      .catch(function (error) {
-      console.log(error);
+        .catch(function (error) {
+        console.log('fail ');
       });
-      */
     },
 
-    save: function (id,description,question_kind,questions) {
-      console.log("id  "+id);
-      console.log("description  "+description);
-      console.log("question_kind "+question_kind);
-      //console.log("visibility is"+questions.visible);
-      questions.visible=false;
-      console.log("visibility is"+questions.visible);
-      /*
-      axios.get('/Save', {
-      params: {
-      id: id,
-      description:description,
-      question_kind:question_kind,
-
-      }
-      })
-      .then(function (response) {
-
-      console.log(response);
-
-      })
-      .catch(function (error) {
-      console.log(error);
-      });
-      */
+    edit:function(row){
+      var vm=this;
+      row.visible=true;
+      vm.$forceUpdate();
+      console.log("visible is "+row.visible)
     },
-    show3:function(value){
-      value.visible = true;
-
-    },
-    setPage: function(pageNumber) {
-      this.currentPage = pageNumber;
-      console.log(pageNumber);
-    }
-    ,
-    showanswer:function(questionId,question){
-      //console.log("id_question befor "+ this.id_question)
-      this.id_question=questionId;
-      // console.log("id_question is "+ this.id_question)
-      // console.log("show table is "+ this.showtable)
-
+    showanswer:function(questionId,questionAnswers){
+  
       this.showtable=true;
-      this.$emit('show')
-      
-      // bus.$emit('show', questionId, this.showtable)
+      console.log("question answer in quesstion component is "+questionAnswers)
+      console.log("question id is ",questionId)
+      this.$emit('event_questions', questionId);
+      this.$emit('show',this.showtable);
+      this.$emit('event_questionanswers',questionAnswers);
+      $("tbody tr").click(function() {
+      $(this).addClass('selected').siblings().removeClass("selected");
+});
 
     },
-
-    addRow: function (newitem) {
+    addRow: function (questions) {
       try {
-        console.log("result is"+newitem);
-        this.newitem.push({visible:true});
-
+        console.log("result is"+questions);
+        this.questions.push({visible:true});
       }
       catch(e)
       {
-        console.log(e);
+      console.log(e);
       }
 
     }
-
   }
- ,
+  ,
   data(){
     return{
-     
       showtable:false,
-      questions:[]
-
+      questions:[],
+      allvisible:'',
+      key:''
     }
 
-
-}
+    }
 }
 
 </script>
 
 <style lang="css">
+.member tr.selected {
+    background-color: rgba(41, 103, 182, 0.89);
+    color: black;
+}
 
+.pagination .active{
+  z-index:0 !important;
+}
 
 </style>

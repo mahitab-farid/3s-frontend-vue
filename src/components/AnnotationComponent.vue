@@ -80,7 +80,7 @@ export default {
           method: 'POST',
           url: window.hostname + '/Annotation/annotationSubmit',
           data: formData,
-          headers: { 'common' :{'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'} }
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         })
         .then(function (response) {
             console.log('[.] Success : ', response);

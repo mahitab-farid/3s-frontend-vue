@@ -1,42 +1,44 @@
 <template>
-  <div class="answertable">
-    <i id="addquestion" class="fa fa-plus" aria-hidden="true" @click="addRow(answers)"></i>
+  <div v-show="showtable" class="answertable">
+    <i id="addquestion" class="fa fa-plus fa-lg" aria-hidden="true" @click="addRow(questionanswers)"></i>
     <table  class="table table-hover table-bordered"  width="100%" >
     <thead>
       <tr class="active">
+        <th>id</th>
+        <th>#</th>
         <th>answer</th>
         <th>color</th>            
         <th>edit</th>
         <th>delete</th>
         <th>save</th>
-        <th>questionid</th>
+  
       </tr>
       </thead>
 
-<tbody>
-      <tr  v-for="answer in answers"  v-bind:id="answer.id">
-
+      <tbody>
+      <tr  v-for="(answer,index) in questionanswers"  v-bind:id="answer.id">
+        <td>{{answer.id}}</td>
+        <td> {{index}}</td>
         <td> <span v-show="!answer.visible2"  >{{answer.answer}}</span>
              <input v-show="answer.visible2" type="text" v-model="answer.answer">
         </td>
         <td>
-        <button @click="lightbox(answer)" class="btn btn-primary"
+        <button @click="lightbox(answer,index)" class="btn btn-primary"
         v-bind:style="{ backgroundColor: answer.color}">AAAAAAA
         </button>
         </td>
         <td v-on:click="show4(answer)"><i class="fa fa-pencil" aria-hidden="true"></i></td>
         <td v-on:click="deleteanswer(answer.id)" ><i class="fa fa-trash" aria-hidden="true"></i></td>
-        <td v-on:click="saveanswer(answer.id,answer.answer,answer.color,answer)"><i class="fa fa-floppy-o" aria-hidden="true" ></i></td>
-        <td>{{answer.question_id}}</td>
-
+        <td v-on:click="saveanswer(answer.id,answer.answer,answer.color,answer.question_id,answer,index)"><i class="fa fa-floppy-o" aria-hidden="true" ></i></td>
+    
       </tr>
-</tbody>
+      </tbody>
     </table>
 
     <div id="light" class="white_content">
 
       <div class="colorpicker">
-        <photoshop-picker  v-model="colors" @change-color="onChange" @ok="onOk(selectedanswer)" @cancel="onCancel(selectedanswer)">
+        <photoshop-picker  v-model="colors" @change-color="onChange" @ok="onOk(selectedanswer,index)" @cancel="onCancel(selectedanswer,index)">
         </photoshop-picker>
       </div>
 
@@ -78,158 +80,150 @@ var defaultProps = {
 
 export default {
 
-  name: 'answertable',
-  props: ['showtable','questions'],
-  components: {
-   'photoshop-picker': Photoshop
-  },
- 
-  methods:{
+name: 'answertable',
+props: ['showtable','questions_Id','questionanswers'],
+components: {
+  'photoshop-picker': Photoshop
+},
 
-      addRow: function (answers) {
-        try {
-          console.log("result is"+answers);
-          this.answers.push({visible2:true});
+methods:{
+  addRow: function (questionanswers) {
+    try {
+      console.log("answers result is"+questionanswers);
+      questionanswers.push({visible2:true,question_id:this.questions_Id});
 
-        } catch(e)
-        {
-          console.log(e);
-        }
-        },
-        show4:function(value){
-          value.visible2 = true;
-          // app.$forceUpdate();
-        },
-      deleteanswer: function(answerId){
-        console.log("id is"+answerId);
-        console.log("id after hidden"+answerId);
-        document.getElementById(answerId).style.display="none";
-       
-        /*
-        axios.get('/Delete', {
-        params: {
-        id: id,
-
-        }
-        })
-        .then(function (response) {
-
-        console.log(response);
-        })
-        .catch(function (error) {
-        console.log(error);
-        });
-        */
-    },
-    saveanswer: function (id,answer_text,color,answer) {
-      var mydata=this;
-      console.log("id is"+id);
-      console.log("answer is"+answer_text);
-      console.log("color is"+color);
-      console.log("visibile"+answer.visible2);
-      console.log("color is"+mydata.colors.hex);
-      answer.visible2=false;
-      /*
-      axios.get('/Save', {
-      params: {
-      id: id,
-      answer:answer,
-      color:mydata.colors.hex,
-
-      }
-      })
-      .then(function (response) {
-      console.log(response);
-
-      })
-      .catch(function (error) {
-      console.log(error);
-      });
-      */
-    },
-    onChange (val) {
-      this.colors = val
-      console.log('color is', val.hex)
-    },
-    onOk(answer){
-
-      console.log('ok++ ',this.colors.hex)
-      answer.color=this.colors.hex
-      document.getElementById('light').style.display='none';
-      document.getElementById('fade').style.display='none';
-
-    },
-    onCancel(answer){
-      console.log('color befor edit++  ',answer.color)
-      console.log('cancel ',this.colors.hex)
-      document.getElementById('light').style.display='none';
-      document.getElementById('fade').style.display='none';
-
-    },
-    lightbox(currentAnswer){
-      this.selectedanswer = currentAnswer;
-      document.getElementById('light').style.display='block';
-      document.getElementById('fade').style.display='block';
     }
-
-  },
-  data()
-  {
-    return{
-      id_question:'',
-      // answers:[],
-      colors: defaultProps,
-      selectedanswer:'',
-      answers:[{  
-  "answer": "answer_type1",
-  "created_at": "2017-01-18T15:26:57Z",
-  "id": 1,
-  "question_id": 1,
-  "updated_at": "2017-01-18T15:26:57Z" ,
-  "color":'red',
-  showcolors:false,
-  visible2 :false
-
-  },
-  { 
-  "answer": "answer_type2",
-  "created_at": "2017-01-18T15:26:57Z",
-  "id": 2,
-  "question_id": 2,
-  "updated_at": "2017-01-18T15:26:57Z",
-  "color":'blue',
-  showcolors:false,
-  visible2 :false
-
-  }]
+    catch(e)
+    {
+      console.log(e);
     }
   },
-  created() {
-    // var mydata = this;
-    // bus.$on('show', function(id){
-    //   console.log('Event in answers table other component emitted', id)
-    //   mydata.id_question=id;
-    //   console.log("id which reieved in answers table "+mydata.id_question)
+  show4:function(value){
+    var vm=this;
+    value.visible2 = true;
+    vm.$forceUpdate();
+  },
+  deleteanswer: function(answerId){
+    console.log("id is"+answerId);
+    console.log("id after hidden"+answerId);
+    document.getElementById(answerId).style.display="none";
+    var formData = new FormData();
+    formData.append('answer_id', answerId);
 
-    //   axios.get('http://localhost:9000/question/getQuestionAnswers', {
-    //     params: {
-    //     id_question: mydata.id_question
-    //     }
-    //   })
-    //   .then(function (response) {
-    //     mydata.answers=response.data;
-    //     console.log(response);
+    axios({
+      method: 'POST',
+      url: window.hostname + '/questions/deleteAnswer',
+      data: formData,
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+    })
+    .then(function (response) {
+      console.log("deleted")
 
-    //   })
-    //   .catch(function (error) {
-    //     console.log("error with id "+mydata.id_question)
-    //     console.log(error);
-    //   });
+    })
+    .catch(function (error) {
+      console.log('fail ');
+    });
+  },
+  saveanswer: function (id,answer,color,question_id,row,index) {
+    if(id == null){
+      this.insertRow(id,answer,color,question_id,row,index);
+    }
+    else{
+      this.updateRow(id,answer,color,question_id,row,index);
+    }
+  },
+  insertRow:function(id,answer,color,question_id,row,index){
+    console.log("entered insert row function")
+    var that=this;
+    row.visible2=false;
+    that.$forceUpdate();
+    var formData = new FormData();
+    formData.append('question_id', question_id);
+    formData.append('answers', answer);
+    formData.append('colors', color);
+    axios({
+      method: 'POST',
+      url: window.hostname + '/questions/addAnswer',
+      data: formData,
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+    })
+    .then(function (response) {
+      that.key=response.data;
+       that.questionanswers[index].id=that.key;
+       console.log("key is "+that.key);
+       that.$forceUpdate();
 
-    // });  
+    })
+    .catch(function (error) {
+      console.log('[.] Fail : ', error);
+    // alert(error.response.data);
+    });
 
+  },
+  updateRow:function(id,answer,color,question_id,row){
+    var that=this;
+    row.visible2=false;
+    that.$forceUpdate();
+    var formData = new FormData();
+    formData.append('answer_id', id);
+    formData.append('new_answer_text', answer);
+    formData.append('new_color', color);
+    axios({
+      method: 'POST',
+      url: window.hostname + '/questions/editanswer',
+      data: formData,
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+    })
+    .then(function (response) {
 
+    })
+    .catch(function (error) {
+      console.log('[.] Fail : ');
+
+    });
+
+  },
+  onChange (val) {
+    this.colors = val;
+    console.log('color is', val.hex)
+  },
+  onOk(answer,index){
+    var vm=this;
+    vm.$forceUpdate();
+    console.log("index at on ok is"+answer.id);
+    console.log('ok++ ',this.colors.hex);
+    answer.color=this.colors.hex;
+    document.getElementById('light').style.display='none';
+    document.getElementById('fade').style.display='none';
+
+  },
+  onCancel(answer,index){
+    console.log('color befor edit++  ',answer.color)
+    console.log('cancel ',this.colors.hex)
+    document.getElementById('light').style.display='none';
+    document.getElementById('fade').style.display='none';
+
+  },
+  lightbox(currentAnswer,index){
+    this.selectedanswer = currentAnswer;
+    this.index=index;
+     console.log("current answer index color  is "+index)
+    console.log("current answer id is "+currentAnswer.id)
+    document.getElementById('light').style.display='block';
+    document.getElementById('fade').style.display='block';
   }
+
+},
+data()
+{
+  return{
+  id_question:'',
+  colors: defaultProps,
+  selectedanswer:'',
+  key:'',
+  index:''
+  }
+}
 
 }
 

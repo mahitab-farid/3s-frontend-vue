@@ -80,6 +80,7 @@ export default {
 
 <style scoped>
 body {
+
     margin: 0;
     font-family: 'Lato', sans-serif;
 }
@@ -88,7 +89,7 @@ body {
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 1;
+    z-index: 100;
     top: 0;
     left: 0;
     background-color: rgb(0,0,0);
