@@ -128,7 +128,7 @@ export default {
 
   .container-fluid {
     padding-top: 17px;
-    background-color: #ff99ff;
+    background-color: #e6e6e6;
   } 
   .navbar-default .navbar-nav>li>a {
       color: #777;

@@ -1,6 +1,6 @@
 <template>
   <div class="topAnnotatorsComponent">
-    <table class="table table-bordered table-striped" style="background: #66ff66;border-radius:30px;">
+    <table class="table table-bordered table-striped" style="background: #b3b3b3;border-radius:30px;">
       <thead>
       <tr>
         <th colspan="4"><i class="fa fa-arrow-right fa-lg" aria-hidden="true"></i>Top Annotators</th>
@@ -14,7 +14,7 @@
         </tr>
       </thead>
       <tbody v-for="(topAnnotator, index) in topAnnotators">
-        <tr style="background: #b3fff0;">
+        <tr style="background: #e6e6e6;">
            <th scope="row"><img src="../assets/user.png" width="40"></th>
           <th>{{index+1}}</th>
           <td style="margin-right:30px;">{{topAnnotator.user_name}}</td>
