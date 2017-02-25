@@ -7,7 +7,7 @@
       <thead>
         <tr class="active">
           <th>#</th>
-          <th>question_id</th>
+          
           <th>question_code</th>
           <th>text</th>
           <th>edit</th>
@@ -18,8 +18,8 @@
       </thead>
       <tbody class="member">
         <tr  v-for="(row, index) in questions " :id="row.id">
-          <td>{{index}}</td>
-          <td>{{row.id}}</td>
+          <td>{{index + 1}}</td>
+          
           <td>
            <span v-show="!row.visible">{{row.question_code}}</span>
             <input v-show="row.visible" type="text" v-model="row.question_code">
