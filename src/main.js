@@ -23,7 +23,6 @@ import ApprovedNewUsers from './screens/ApprovedNewUsers'
 import CheckerComponent from './components/CheckerComponent'
 import Questionanswers from './components/QuestionAnswers'
 import Routes from './routes.js'
-
 Vue.use(VueRouter);
 Vue.use(axios);
 window.hostname = 'http://localhost:9010';
