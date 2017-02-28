@@ -1,20 +1,27 @@
 <template>
+
   <div  id="annotation">
-    <logoutComponent></logoutComponent>
-    <menuComponent></menuComponent>
+    <headerComponent></headerComponent>
     <button id="answersbutton" class="btn btn-primary" @click="getPrevious()">Previous</button>
     <div v-for="(annotationReview, index) in annotationReviews">
-      <div id="annotate">
-        {{annotationReview.review_text}}
-      </div>
-      <div class="annotationWrapper">
-        
-        <button id="answersbutton" class="btn btn-primary" @click="submitRow(index, annotationReview.id, questionAnswer.answer, questionAnswer.id)"    v-for="questionAnswer in questionAnswers"  v-bind:style="{ backgroundColor: questionAnswer.color}">
-          
-          {{questionAnswer.answer}}
+      <div id="wrap">
+        <div id="annotate">
+          {{annotationReview.review_text}}
+        </div>
+        <div class="QuestionAnswers">
+              <h1>{{currentQuestion}}</h1>
+              <ul v-for="questionAnswer in questionAnswers">
+                <div id="checkerbutton">
+                    <li>
+                      <button @click="submitRow(index, annotationReview.id, questionAnswer.answer, questionAnswer.id)" class="btn btn-primary"
+                        v-bind:style="{ backgroundColor: questionAnswer.color}" >{{questionAnswer.answer}} </button>
+                    </li>
+                </div>
+              </ul> 
 
-      </div>
-    </div> 
+        </div>
+        </div>
+    </div>  
       <annotationComponent v-on:event_annotation="eventAnnotation" :annotationSubmit="annotationSubmit" :numOfReviews="numOfReviews"></annotationComponent>
       
       <questionAnswers v-on:event_questionAnswers="eventQuestionAnswers"></questionAnswers>
@@ -26,12 +33,12 @@
 import AnnotationComponent from '../components/AnnotationComponent'
 import QuestionAnswers from '../components/QuestionAnswers'
 import MenuComponent from '../components/MenuComponent'
-import LogoutComponent from '../components/LogoutComponent'
+import HeaderComponent from '../components/HeaderComponent'
 
 export default {
   name: 'annotation',
   components: {
-    AnnotationComponent, QuestionAnswers, MenuComponent, MenuComponent, LogoutComponent
+    AnnotationComponent, QuestionAnswers, MenuComponent, MenuComponent, HeaderComponent
   },
  
   data(){
@@ -40,7 +47,8 @@ export default {
      previousAnnotationStack: [],
      questionAnswers: [],
      numOfReviews: 0,
-     annotationSubmit: {annotationIds: [], reviewsResult: [], reviewsResultId: []}
+     annotationSubmit: {annotationIds: [], reviewsResult: [], reviewsResultId: []},
+     currentQuestion:''
      
     }
   },
@@ -58,7 +66,9 @@ export default {
       },
 
         eventQuestionAnswers: function(questionAnswers) {
-          this.questionAnswers = questionAnswers;
+          console.log("nabil: ", questionAnswers.answers);
+          this.questionAnswers = questionAnswers.answers;
+          this.currentQuestion = questionAnswers.question_text;
           console.log('Event from questions component emitted', questionAnswers);
       },
 
@@ -95,7 +105,7 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 #annotation {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -109,26 +119,42 @@ export default {
 }
 
 .annotationWrapper {
-    text-align: center;
+  text-align: center;
 }
 
 .center {
-    text-align: center;
+  text-align: center;
 }
-
 
 #annotate{
   height:200px;
-  /*width:1170px;*/
   overflow:scroll;
   background-color:#F6F6F6;
   text-align: center;
-  width:1600px;
-   margin:20px auto;
-   font-size: 20px
+  width: 1305px;
+  margin:20px auto;
+  font-size: 20px;
+  padding-top: 22px;
+  margin-left: 69px;
+  float:left;
 }
 
 #answersbutton{
-margin: 2px;
+  margin: 2px;
+}
+#wrapp {
+  overflow: hidden; 
+}
+
+.QuestionAnswers {
+  padding-top: 39px;
+  padding-left: 75px;
+  overflow: hidden;
+}
+ul {
+  list-style-type: none;
+}
+#checkerbutton{
+  padding-left:60px;
 }
 </style>

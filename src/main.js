@@ -14,6 +14,8 @@ import Checker   from './screens/Checker'
 import Home   from './screens/Home'
 import AdminHome   from './screens/AdminHome'
 import Lexicon   from './screens/Lexicon'
+import Questions   from './screens/Questions'
+import LexiconSearch from './screens/LexiconSearch'
 import Signup from './components/signup'
 import AnnotationComponent from './components/AnnotationComponent'
 import CheckCookiesComponent from './components/CheckCookiesComponent'
@@ -23,14 +25,17 @@ import CheckerComponent from './components/CheckerComponent'
 import Questionanswers from './components/QuestionAnswers'
 import Routes from './routes.js'
 
+import Paginate from 'vuejs-paginate'
+
+Vue.use(Paginate);
 Vue.use(VueRouter);
 Vue.use(axios);
-
-
+window.hostname = 'http://localhost:9010';
 // 3. Create the router instance and pass the `routes` option
 // You can pass in additional options here, but let's
 // keep it simple for now.
 /* eslint-disable no-new */
+
 if (document.querySelector('#app')){
   new Vue({
     el: '#app',
@@ -45,6 +50,37 @@ if (document.querySelector('#app')){
     }
   });
 }
+
+if (document.querySelector('#questions')){
+  new Vue({
+    el: '#questions',
+    template: '<Questions/>',
+    components: { Questions },
+     http: {
+      root: '/root',
+      headers: {
+        'access-control-allow-origin,content-type': '*',
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    }
+  });
+}
+
+if (document.querySelector('#lexiconSearch')){
+  new Vue({
+    el: '#lexiconSearch',
+    template: '<LexiconSearch/>',
+    components: { LexiconSearch },
+     http: {
+      root: '/root',
+      headers: {
+        'access-control-allow-origin,content-type': '*',
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    }
+  });
+}
+
 
 if (document.querySelector('#statisticsDashboard')){
   new Vue({

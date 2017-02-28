@@ -1,25 +1,24 @@
 <template>
   <div id="home">
-    <logoutComponent></logoutComponent>
-    <menuComponent></menuComponent> 
-      "home"
+    <headerComponent></headerComponent>
+      <h1><center><font color="red">WELCOME IN NLP-NEW-SYSTEM</font></center></h1>
   </div>
 </template>
 
 <script>
 
 import MenuComponent from '../components/MenuComponent'
-import LogoutComponent from '../components/LogoutComponent'
+import HeaderComponent from '../components/HeaderComponent'
 
 export default {
   name: 'home',
   components: {
-     MenuComponent, LogoutComponent
+     MenuComponent, HeaderComponent
   },
  
   data(){
     return{
-     
+      
     }
   },
 

@@ -1,7 +1,7 @@
 <template>
   <div class="annotationComponent">
     {{computedAnnotationSubmit}}
-    <div  style="margin-left:840px;margin-top:300px">
+    <div   style="margin-left:840px;margin-top:300px">
 
       <button class="btn btn-info" @click="getAnnotationReviews()" id="annotation">Get Next</button>
       
@@ -42,10 +42,10 @@ export default {
 
                   var that = this;
                                              
-                  axios.get('http://localhost:9010/annotation/getAssignedAnnotationReviews', {
+                  axios.get(window.hostname+'/annotation/getAssignedAnnotationReviews', {
                       params: {
                         user_id: window.sessionStorage.getItem('user_id'),
-                        question_code: 'pos'
+                        question_code: 'positivity'
                       }
                     })
                     .then(function (response) {
@@ -53,7 +53,6 @@ export default {
                       if (response.status == 204){
                         alert('There is No reviews!');
                       }else{
-
                         that.annotationReviews = response.data;
                         that.numOfReviews = response.data.length;
                         that.$emit('event_annotation', response.data);
@@ -79,7 +78,7 @@ export default {
 
         axios({
           method: 'POST',
-          url: 'http://localhost:9010/Annotation/annotationSubmit',
+          url: window.hostname + '/Annotation/annotationSubmit',
           data: formData,
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         })

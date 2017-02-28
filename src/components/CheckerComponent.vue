@@ -1,8 +1,8 @@
 <template>
   <div class="checkerComponent">
     {{computedChecksSubmit}}
-    <div style="margin-left:840px;margin-top:300px">
-      <button @click="getCheckReviews()" id="NextReviews">Get Next</button>
+    <div class="center" id="NextReviews" >
+      <button class="btn btn-primary" @click="getCheckReviews()" >Get Next</button>
     </div>
   </div>
 </template>
@@ -38,10 +38,10 @@ export default {
 
                   var that = this;
                                              
-                  axios.get('http://localhost:9010/checker/getAssignedCheckingReviews', {
+                  axios.get(window.hostname + '/checker/getAssignedCheckingReviews', {
                       params: {
                         user_id: window.sessionStorage.getItem('user_id'),
-                        question_code: 'pos'
+                        question_code: 'positivity'
                       }
                     })
                     .then(function (response) {
@@ -74,7 +74,7 @@ export default {
 
         axios({
           method: 'POST',
-          url: 'http://localhost:9010/checker/checkSubmit',
+          url: window.hostname + '/checker/checkSubmit',
           data: formData,
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         })
@@ -98,9 +98,17 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 #checkerComponent{
 
 }
+#NextReviews[data-v-5f349455] {
+    padding-top: 126px;
+}
 
+.center{
+  text-align: center;
+  padding-right: 365px;
+
+}
 </style>

@@ -1,13 +1,13 @@
 F<template>
   
   <div id="statisticsDashboard">
-      <logoutComponent></logoutComponent>
-      <menuComponent></menuComponent>
+      <headerComponent></headerComponent>
       <H3 class="center">USERS STATISTICS</H3>
     
     <table style="width:100%">
       <thead>
       <tr>
+        <th>#</th>
         <th>Name</th>
         <th>Number of annotation reviews</th>
         <th>Number of checker reviews</th>
@@ -18,10 +18,10 @@ F<template>
       </tr>
       </thead>
       <tbody>
-        <tr v-for="usersStatistic in usersStatistics">
+        <tr v-for="(usersStatistic, index) in usersStatistics">
             
-           <td> <a href="javascript:void(0)" @click="showTab(usersStatistic.user_id, usersStatistic.user_name)">{{usersStatistic.user_name}}</a></td>
-            
+          <td>{{index + 1}}</td>  
+          <td> <a href="javascript:void(0)" @click="showTab(usersStatistic.user_id, usersStatistic.user_name)">{{usersStatistic.user_name}}</a></td>
           <td>{{usersStatistic.numOfAnnotationReviews}}</td>
           <td>{{usersStatistic.numOfChecksReviews}}</td>
           <td>{{usersStatistic.numOfLexiconsReviews}}</td>
@@ -54,7 +54,7 @@ F<template>
       <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">Close</a>
     </div>
     <div id="fade" class="black_overlay"></div>
- 
+    <AnnotatorsQualityTableComponent></AnnotatorsQualityTableComponent>
   </div>
 </template>
 
@@ -64,12 +64,13 @@ import AnnotationUserStatisticsComponent from '../components/AnnotationUserStati
 import ChecksUserStatisticsComponent from '../components/ChecksUserStatisticsComponent.vue';
 import LexiconsUserStatisticsComponent from '../components/LexiconsUserStatisticsComponent.vue';
 import MenuComponent from '../components/MenuComponent'
-import LogoutComponent from '../components/LogoutComponent'
+import AnnotatorsQualityTableComponent from '../components/AnnotatorsQualityTableComponent'
+import HeaderComponent from '../components/HeaderComponent'
 
 export default {
   name: 'statisticsDashboard',
   components: {
-    AnnotationUserStatisticsComponent, ChecksUserStatisticsComponent, LexiconsUserStatisticsComponent, MenuComponent, LogoutComponent
+    AnnotationUserStatisticsComponent, ChecksUserStatisticsComponent, LexiconsUserStatisticsComponent, MenuComponent, HeaderComponent, AnnotatorsQualityTableComponent
   },
  
   data(){
@@ -88,7 +89,7 @@ export default {
     getUsersStatistics: function(){
 
       var that = this;                           
-      axios.get('http://localhost:9010/administration/allUsersStatisticsDashboard', {
+      axios.get(window.hostname + '/administration/allUsersStatisticsDashboard', {
    
         })
         .then(function (response) {

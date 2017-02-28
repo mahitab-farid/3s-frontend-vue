@@ -5,17 +5,19 @@
       <a href="javascript:void(0)" class="closebtn" @click="closeNav()">&times;</a>
       <div class="overlay-content">
         
-        <a href="../home.html" v-if="!admin">Home</a>
+        <!-- <a href="../home.html" v-if="!admin">Home</a>
         <a href="../adminHome.html" v-if="admin">Home</a>
-        <a href="#" >Profile</a>
+        <a href="#" >Profile</a> -->
+        
         <a href="../annotation.html" v-if="admin||annotator">Annotation</a>
         <a href="../checker.html" v-if="admin||checker">Checking reviews</a>
         <a href="../lexicon.html" v-if="admin||lexicon_checker">Lexicons</a>
         <a href="../statisticsDashboard.html" v-if="admin">Users Statistics</a>
         <a href="../approvedNewUsers.html" v-if="admin">Users Approval</a>
+        <a href="../questions.html" v-if="admin">Questions</a>
+        <a href="../lexiconSearch.html">LexiconSearch</a>
         <a href="#">Settings</a>
  
-        
 
       </div>
     </div>
@@ -78,6 +80,7 @@ export default {
 
 <style scoped>
 body {
+
     margin: 0;
     font-family: 'Lato', sans-serif;
 }
@@ -86,7 +89,7 @@ body {
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 1;
+    z-index: 100;
     top: 0;
     left: 0;
     background-color: rgb(0,0,0);

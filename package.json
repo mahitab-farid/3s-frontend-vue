@@ -2,12 +2,15 @@
   "name": "annotation-system",
   "version": "1.0.0",
   "description": "A Vue.js Front-End for NLP annotation",
-  "authors": ["Mahitab Frid <mahitabfarid@smartera3s.com>","Mohamed Nabil <mohamednabil00000@gmail.com>"],
+  "authors": [
+    "Mahitab Frid <mahitabfarid@smartera3s.com>",
+    "Mohamed Nabil <mohamednabil00000@gmail.com>"
+  ],
   "private": true,
   "main": "dist/vue-resource.common.js",
   "jsnext:main": "dist/vue-resource.es2015.js",
-   "homepage": "https://github.com/vuejs/vue-resource#readme",
-    "keywords": [
+  "homepage": "https://github.com/vuejs/vue-resource#readme",
+  "keywords": [
     "vue",
     "xhr",
     "http",
@@ -29,12 +32,16 @@
     "url": "git+https://github.com/vuejs/vue-resource.git"
   },
   "dependencies": {
-    "vue": "^2.1.0",
     "axios": "^0.15.3",
-    "vue-router": "^2.2.0",
     "bootstrap": "^4.0.0-alpha.6",
     "bootstrap-loader": "^2.0.0-beta.20",
-    "vueboot": "^0.4.5"
+    "vue": "^2.1.0",
+    "vue-chartjs": "^2.3.5",
+    "vue-color": "^2.0.6",
+    "vue-paginate": "^3.4.0",
+    "vue-router": "^2.2.0",
+    "vueboot": "^0.4.5",
+    "vuejs-paginator": "^2.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",

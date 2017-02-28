@@ -25,7 +25,7 @@ export default {
 
       var that = this;
                                  
-      axios.get('http://localhost:9010/user/getAllUnapprovedUsers', {
+      axios.get(window.hostname + '/user/getAllUnapprovedUsers', {
        
         })
         .then(function (response) {

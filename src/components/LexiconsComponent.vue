@@ -2,8 +2,8 @@
   <div class="lexiconComponent">
         {{computedLexiconsSubmit}}
     <div class="center">
-      <button class="btn btn-info" style="margin-top:300px" @click="getLexicons()" id="lexicon">Get Next</button>
-      
+      <button   id="lexicon" class="btn btn-primary" style="margin-top:300px" @click="getLexicons()">Get Next</button>
+    
     </div>
        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   </div>
@@ -38,7 +38,7 @@ export default {
 
                   var that = this;
                                              
-                  axios.get('http://localhost:9010/lexicon/getAssignedLexicons', {
+                  axios.get(window.hostname + '/lexicon/getAssignedLexicons', {
                       params: {
                         user_id: window.sessionStorage.getItem('user_id')
                       }
@@ -50,6 +50,7 @@ export default {
                       }else{
 
                         that.lexicons = response.data;
+                        console.log(response.data[0].word);
                         that.numOfLexicons = response.data.length;
                         that.$emit('event_lexicons', response.data);
                       }
@@ -74,7 +75,7 @@ export default {
 
         axios({
           method: 'POST',
-          url: 'http://localhost:9010/lexicon/submitLexicon',
+          url: window.hostname + '/lexicon/submitLexicon',
           data: formData,
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         })
@@ -97,9 +98,15 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 #lexiconComponent{
 
+}
+#lexicon{
+
+}
+.center{
+  text-align: center
 }
 
 </style>

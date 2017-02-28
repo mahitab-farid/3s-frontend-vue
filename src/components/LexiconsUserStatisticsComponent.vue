@@ -41,7 +41,7 @@ export default {
     getUserLexiconsStatistics: function(){
 
       var that = this;                
-      axios.get('http://localhost:9010/administration/getUserLexiconsStatistics', {
+      axios.get(window.hostname + '/administration/getUserLexiconsStatistics', {
 
                       params: {
                         user_id: that.user_id
