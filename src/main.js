@@ -15,6 +15,7 @@ import Home   from './screens/Home'
 import AdminHome   from './screens/AdminHome'
 import Lexicon   from './screens/Lexicon'
 import Questions   from './screens/Questions'
+import LexiconSearch from './screens/LexiconSearch'
 import Signup from './components/signup'
 import AnnotationComponent from './components/AnnotationComponent'
 import CheckCookiesComponent from './components/CheckCookiesComponent'
@@ -65,6 +66,20 @@ if (document.querySelector('#questions')){
   });
 }
 
+if (document.querySelector('#lexiconSearch')){
+  new Vue({
+    el: '#lexiconSearch',
+    template: '<LexiconSearch/>',
+    components: { LexiconSearch },
+     http: {
+      root: '/root',
+      headers: {
+        'access-control-allow-origin,content-type': '*',
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    }
+  });
+}
 
 
 if (document.querySelector('#statisticsDashboard')){
