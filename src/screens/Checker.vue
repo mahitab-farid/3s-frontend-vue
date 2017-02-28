@@ -22,7 +22,7 @@
       </div>
         <div class="reviewsanswer" v-bind:style="{ backgroundColor: mapColoring[checkReview.answer_text]}">
           Annotation result is {{checkReview.answer_text}}
-          Annotator is Mr {{checkReview.annotator_name}}
+          Annotator is Mr/Mrs {{checkReview.annotator_name}}
         </div>
     </div> 
     <checkerComponent v-on:event_checker="eventChecker" :checkerSubmit="checkerSubmit" :numOfReviews="numOfReviews"></checkerComponent>

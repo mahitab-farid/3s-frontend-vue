@@ -4,7 +4,7 @@
     <table  class="table table-hover table-bordered"  width="100%" >
     <thead>
       <tr class="active">
-        <th>id</th>
+        
         <th>#</th>
         <th>answer</th>
         <th>color</th>            
@@ -17,14 +17,14 @@
 
       <tbody>
       <tr  v-for="(answer,index) in questionanswers"  v-bind:id="answer.id">
-        <td>{{answer.id}}</td>
-        <td> {{index}}</td>
+        
+        <td> {{index + 1}}</td>
         <td> <span v-show="!answer.visible2"  >{{answer.answer}}</span>
              <input v-show="answer.visible2" type="text" v-model="answer.answer">
         </td>
         <td>
         <button @click="lightbox(answer,index)" class="btn btn-primary"
-        v-bind:style="{ backgroundColor: answer.color}">AAAAAAA
+        v-bind:style="{ backgroundColor: answer.color}">
         </button>
         </td>
         <td v-on:click="show4(answer)"><i class="fa fa-pencil" aria-hidden="true"></i></td>
