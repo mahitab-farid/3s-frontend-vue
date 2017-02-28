@@ -8,8 +8,8 @@
       <tr>
         <th>#</th>
         <th>Annotator</th>
-        <th># Total annotations</th>
-        <th># Right annotations</th>
+        <th># Total annotations checked</th>
+        <th># Right annotations checked</th>
         <th>Quality</th>
       </tr>
       </thead>
