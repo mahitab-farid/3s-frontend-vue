@@ -117,9 +117,9 @@ export default {
             that.annotationDataMap = new Object();
             
             for (var i = 0; i < response.data.totalNumberOfAnnotations.length; i++){
-              that.annotationDataMap[response.data.totalNumberOfAnnotations[i].question_code] = [response.data.numOfReviews - response.data.totalNumberOfAnnotations[i].count, response.data.totalNumberOfAnnotations[i].count]; 
-              that.AnnotationQuestions.push(response.data.totalNumberOfAnnotations[i].question_code);
-              that.currentAnnotationQuestion = response.data.totalNumberOfAnnotations[i].question_code;
+              that.annotationDataMap[response.data.totalNumberOfAnnotations[i].question_text] = [response.data.numOfReviews - response.data.totalNumberOfAnnotations[i].count, response.data.totalNumberOfAnnotations[i].count]; 
+              that.AnnotationQuestions.push(response.data.totalNumberOfAnnotations[i].question_text);
+              that.currentAnnotationQuestion = response.data.totalNumberOfAnnotations[i].question_text;
               that.AnnotationData = [response.data.numOfReviews - response.data.totalNumberOfAnnotations[i].count, response.data.totalNumberOfAnnotations[i].count];
             }
 
@@ -141,9 +141,9 @@ export default {
             
             for (var i = 0; i < response.data.totalNumberOfChecks.length; i++){
               
-              that.checkDataMap[response.data.totalNumberOfChecks[i].question_code] = [response.data.numOfReviews - response.data.totalNumberOfChecks[i].count, response.data.totalNumberOfChecks[i].count]; 
-              that.checkQuestions.push(response.data.totalNumberOfChecks[i].question_code);
-              that.currentCheckQuestion = response.data.totalNumberOfChecks[i].question_code;
+              that.checkDataMap[response.data.totalNumberOfChecks[i].question_text] = [response.data.numOfReviews - response.data.totalNumberOfChecks[i].count, response.data.totalNumberOfChecks[i].count]; 
+              that.checkQuestions.push(response.data.totalNumberOfChecks[i].question_text);
+              that.currentCheckQuestion = response.data.totalNumberOfChecks[i].question_text;
               that.checkData = [response.data.numOfReviews - response.data.totalNumberOfChecks[i].count, response.data.totalNumberOfChecks[i].count];
             }
 

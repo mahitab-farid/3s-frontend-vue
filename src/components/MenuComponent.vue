@@ -15,7 +15,7 @@
         <a href="../statisticsDashboard.html" v-if="admin">Users Statistics</a>
         <a href="../approvedNewUsers.html" v-if="admin">Users Approval</a>
         <a href="../questions.html" v-if="admin">Questions</a>
-        <a href="../lexiconSearch.html">LexiconSearch</a>
+        <a href="../lexiconSearch.html" v-if="admin||lexicon_checker">LexiconSearch</a>
         <a href="#">Settings</a>
  
 

@@ -24,7 +24,7 @@
         </td>
         <td>
         <button @click="lightbox(answer,index)" class="btn btn-primary"
-        v-bind:style="{ backgroundColor: answer.color}">
+          v-bind:style="{ backgroundColor: answer.color}">
         </button>
         </td>
         <td v-on:click="show4(answer)"><i class="fa fa-pencil" aria-hidden="true"></i></td>

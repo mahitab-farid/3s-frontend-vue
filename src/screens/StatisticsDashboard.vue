@@ -1,60 +1,13 @@
-F<template>
+<template>
   
   <div id="statisticsDashboard">
       <headerComponent></headerComponent>
-      <H3 class="center">USERS STATISTICS</H3>
-    
-    <table style="width:100%">
-      <thead>
-      <tr>
-        <th>#</th>
-        <th>Name</th>
-        <th>Number of annotation reviews</th>
-        <th>Number of checker reviews</th>
-        <th>Number of lexicons reviews</th>
-        <th>Avg annotations/min</th>
-        <th>Avg checks/min</th>
-        <th>Avg lexicons/min</th>
-      </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(usersStatistic, index) in usersStatistics">
-            
-          <td>{{index + 1}}</td>  
-          <td> <a href="javascript:void(0)" @click="showTab(usersStatistic.user_id, usersStatistic.user_name)">{{usersStatistic.user_name}}</a></td>
-          <td>{{usersStatistic.numOfAnnotationReviews}}</td>
-          <td>{{usersStatistic.numOfChecksReviews}}</td>
-          <td>{{usersStatistic.numOfLexiconsReviews}}</td>
-          <td>{{usersStatistic.avgAnnotationTime}}</td>
-          <td>{{usersStatistic.avgCheckingTime}}</td>
-          <td>{{usersStatistic.avgLexiconsTime}}</td>
-        </tr>
-        </tbody>
-    </table>
-    
-    <div id="light" class="white_content"><h3>{{currentUser.name}}'s Statistics</h3>
-      <ul class="tab">
-        <li><a href="javascript:void(0)" class="tablinks" @click="tabWrite(event, 'Annotation Statistics')">Annotation Statistics</a></li>
-        <li><a href="javascript:void(0)" class="tablinks" @click="tabWrite(event, 'Checks Statistics')">Checks Statistics</a></li>
-        <li><a href="javascript:void(0)" class="tablinks" @click="tabWrite(event, 'Lexicons Statistics')">Lexicons Statistics</a></li>
-      </ul>
-
-      <div id="Annotation Statistics" class="tabcontent">
-        <annotationUserStatisticsComponent :user_id="currentUser.id"></annotationUserStatisticsComponent>
-      </div>
-
-      <div id="Checks Statistics" class="tabcontent">
-        <checksUserStatisticsComponent :user_id="currentUser.id"></checksUserStatisticsComponent>
-      </div>
-
-      <div id="Lexicons Statistics" class="tabcontent">
-        <lexiconsUserStatisticsComponent :user_id="currentUser.id"></lexiconsUserStatisticsComponent>
-      </div> 
-
-      <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">Close</a>
-    </div>
-    <div id="fade" class="black_overlay"></div>
-    <AnnotatorsQualityTableComponent></AnnotatorsQualityTableComponent>
+      <AnnotationUsersStatisticsTable></AnnotationUsersStatisticsTable>  
+      <CheckersStatisticsTable></CheckersStatisticsTable>
+      <lexiconAnnotatorsStatisticsTable></lexiconAnnotatorsStatisticsTable>
+      <AnnotatorsQualityTableComponent></AnnotatorsQualityTableComponent>
+      <allUsersStatisticsTable></allUsersStatisticsTable>
+      
   </div>
 </template>
 
@@ -66,64 +19,32 @@ import LexiconsUserStatisticsComponent from '../components/LexiconsUserStatistic
 import MenuComponent from '../components/MenuComponent'
 import AnnotatorsQualityTableComponent from '../components/AnnotatorsQualityTableComponent'
 import HeaderComponent from '../components/HeaderComponent'
+import allUsersStatisticsTable from '../components/allUsersStatisticsTable'
+import datepickercomponent from 'vue-date'
+import AnnotationUsersStatisticsTable from '../components/AnnotationUsersStatisticsTable'
+import CheckersStatisticsTable from '../components/CheckersStatisticsTable'
+import LexiconAnnotatorsStatisticsTable from '../components/LexiconAnnotatorsStatisticsTable'
 
 export default {
   name: 'statisticsDashboard',
   components: {
-    AnnotationUserStatisticsComponent, ChecksUserStatisticsComponent, LexiconsUserStatisticsComponent, MenuComponent, HeaderComponent, AnnotatorsQualityTableComponent
+    AnnotationUserStatisticsComponent, ChecksUserStatisticsComponent, LexiconsUserStatisticsComponent, MenuComponent, HeaderComponent, AnnotatorsQualityTableComponent, allUsersStatisticsTable, datepickercomponent, AnnotationUsersStatisticsTable, CheckersStatisticsTable, LexiconAnnotatorsStatisticsTable
   },
  
   data(){
     return{
-      usersStatistics: [],
-      currentUser: {id: '', name: ''}
+      fromdate: '2016-10-16',
+      todate:'2016-10-28',
     }
   },
 
 
   mounted: function(){
-    this.getUsersStatistics();
+    
   },
 
   methods: {
-    getUsersStatistics: function(){
-
-      var that = this;                           
-      axios.get(window.hostname + '/administration/allUsersStatisticsDashboard', {
-   
-        })
-        .then(function (response) {
-          console.log(response.data)
-          that.usersStatistics = response.data;
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    },
-
-
-     tabWrite: function(evt, cityName) {
-      
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
      
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-
-        document.getElementById(cityName).style.display = "block";
-       // evt.currentTarget.className += " active";
-    },
-    showTab: function(userId, userName){
-      document.getElementById('light').style.display='block';
-      document.getElementById('fade').style.display='block';
-      this.currentUser.id = userId;
-      this.currentUser.name = userName;
-    }    
   }
 
 }
@@ -212,5 +133,24 @@ ul.tab li a:focus, .active {background-color: #ccc;}
   background-color: white;
   z-index: 1002;
   overflow: auto;
+}
+
+.A{
+    width: 11%;  
+    float: left;
+    font-size: 14px;
+}
+.B{
+   width: 11%;  
+    float: left;
+    font-size: 14px;
+}
+#fromlabel{
+  float:left;
+ padding: 6px;
+}
+#tolabel{
+  float:left;
+      padding: 6px;
 }
 </style>
