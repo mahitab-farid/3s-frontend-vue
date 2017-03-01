@@ -39,10 +39,9 @@
     "vue-chartjs": "^2.3.5",
     "vue-color": "^2.0.6",
     "vue-date": "^1.1.5",
-    "vue-paginate": "^3.4.0",
     "vue-router": "^2.2.0",
     "vueboot": "^0.4.5",
-    "vuejs-paginator": "^2.0.0"
+    "vuejs-paginate": "^0.6.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",

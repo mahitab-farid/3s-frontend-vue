@@ -11,8 +11,8 @@
       <div class="lexiconWrapper">
         
         <button id="answersbutton" class="btn btn-primary" @click="submitRow(index, lexicon.id, lexiconAnswersType.id)"    v-for="lexiconAnswersType in lexiconAnswersTypes" v-bind:style="{ backgroundColor: lexiconAnswersType.color}">
-          
           {{lexiconAnswersType.type}}
+        </button>
 
       </div>
     </div> 
