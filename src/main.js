@@ -30,7 +30,7 @@ import Paginate from 'vuejs-paginate'
 Vue.use(Paginate);
 Vue.use(VueRouter);
 Vue.use(axios);
-window.hostname = 'http://localhost:9010';
+window.hostname = 'http://45.56.100.181/:9010';
 // 3. Create the router instance and pass the `routes` option
 // You can pass in additional options here, but let's
 // keep it simple for now.
